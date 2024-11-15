@@ -1,12 +1,12 @@
 import '../styles/modal.css';
-export default function Modal() {
+export default function Modal({closeModal}) {
     return (
         <div className="modal show" style={{ display: 'block' }} tabindex="-1" role="dialog">
             <div className="modal-dialog" role="document">
                 <div className="modal-content">
                     <div className="modal-header">
                         <h3 className="modal-title"><strong>New database diagram</strong></h3>
-                        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button type="button" className="btn-close" onClick={closeModal} aria-label="Close"></button>
                     </div>
                     <div className="modal-body">
                         <form>
@@ -17,7 +17,7 @@ export default function Modal() {
                         </form>
                     </div>
                     <div className="modal-footer">
-                        <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">
+                        <button type="button" className="btn btn-secondary" onClick={closeModal}>
                             Close
                         </button>
                         <button type="button" className="btn btn-primary">Create diagramm</button>
