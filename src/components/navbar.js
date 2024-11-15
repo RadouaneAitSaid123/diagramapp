@@ -20,7 +20,7 @@ export default function Navbar() {
                 <button className="btn btn-outline-primary" type="submit" onClick={openModal}>New diagram</button>
             </div>
         </nav>
-        {showModal && <Modal closeModal={closeModal} />}
+        <Modal isOpen={showModal} closeModal={closeModal} />
         </>
 
     )

@@ -1,5 +1,6 @@
 import '../styles/modal.css';
-export default function Modal({closeModal}) {
+export default function Modal({ isOpen, closeModal }) {
+    if (!isOpen) return null;
     return (
         <div className="modal show" style={{ display: 'block' }} tabindex="-1" role="dialog">
             <div className="modal-dialog" role="document">
