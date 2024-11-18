@@ -7,7 +7,14 @@ h1{
   letter-spacing: 8px;
   font-size: xx-large;
 }
-
+.welcome{
+  background-color: rgb(27, 73, 96);
+  height: 100vh;
+  color: lightcyan;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 
 

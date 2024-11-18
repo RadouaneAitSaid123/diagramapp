@@ -21,9 +21,16 @@ export default function Navbar({ showGenerateButton, onCreateDiagram }) {
                         New diagram
                     </button>
                     {showGenerateButton && (
-                        <button className="btn btn-success">
-                            Generate Code
-                        </button>
+                        <div class="btn-group">
+                            <button class="btn btn-outline-success dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Generate code
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Java</a></li>
+                                <li><a class="dropdown-item" href="#">Php</a></li>
+                                <li><a class="dropdown-item" href="#">Python</a></li>
+                            </ul>
+                        </div>
                     )}
                 </div>
             </nav>

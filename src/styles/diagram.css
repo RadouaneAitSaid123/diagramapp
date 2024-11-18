@@ -1,4 +1,15 @@
 .diagram-container {
     background-color: white;
+    color: black;
     min-height: 100vh;
+    text-align: center;
+    align-items: center;
+    display: block;
+    margin-top: 150px;
+}
+.divider {
+    border: none;
+    border-top: 2px solid #000;
+    width: 80%;
+    margin: 20px auto;
 }

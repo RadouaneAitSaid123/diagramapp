@@ -3,13 +3,14 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from './components/Navbar';
 import Diagram from './components/Diagram';
 import { useState } from 'react';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
 
 
 function App() {
   const [showDiagram, setShowDiagram] = useState(false);
   return (
-    <div className="container-fluid bg-dark text-light min-vh-100">
+    <div className="container-fluid">
       {/* Navbar reste toujours visible */}
       <Navbar
         showGenerateButton={showDiagram}
@@ -19,7 +20,7 @@ function App() {
 
       {/* Affichage conditionnel */}
       {!showDiagram && (
-        <div className="d-flex justify-content-center align-items-center" style={{ height: '80vh' }}>
+        <div className="welcome">
           <h1>Welcome to UML Diagram App</h1>
         </div>
       )}
