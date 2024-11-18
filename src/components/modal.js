@@ -1,5 +1,5 @@
 import '../styles/modal.css';
-export default function Modal({ isOpen, closeModal }) {
+export default function Modal({ isOpen, closeModal, onCreateDiagram }) {
     if (!isOpen) return null;
     return (
         <div className="modal show" style={{ display: 'block' }} tabindex="-1" role="dialog">
@@ -21,7 +21,10 @@ export default function Modal({ isOpen, closeModal }) {
                         <button type="button" className="btn btn-secondary" onClick={closeModal}>
                             Close
                         </button>
-                        <button type="button" className="btn btn-primary">Create diagramm</button>
+                        <button type="button" className="btn btn-primary" onClick={() => {
+                            closeModal();
+                            onCreateDiagram()
+                        }}>Create diagramm</button>
                     </div>
                 </div>
             </div>
