@@ -4,6 +4,8 @@ import Navbar from './components/Navbar';
 import Diagram from './components/Diagram';
 import { useState } from 'react';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import React from 'react';
+
 
 
 
