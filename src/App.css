@@ -1,12 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Anton&family=Ga+Maamli&display=swap');
-nav {
-  background-color: #e3f2fd;
-}
-.navbar-brand {
-  font-family: 'Lobster', cursive; 
-  font-size: 1.5rem;
-  color: #333;
-}
+
 h1{
   font-family: "Ga Maamli", sans-serif;
   font-weight: 400;
@@ -14,11 +7,14 @@ h1{
   letter-spacing: 8px;
   font-size: xx-large;
 }
-.modal-title,label{
-  color: #393E46;
-
+.welcome{
+  background-color: rgba(27, 73, 96,0.8);
+  height: 100vh;
+  color: lightcyan;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-
 
 
 

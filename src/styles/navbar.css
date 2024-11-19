@@ -1,0 +1,8 @@
+nav {
+    background-color: #e3f2fd;
+  }
+  .navbar-brand {
+    font-family: 'Lobster', cursive; 
+    font-size: 1.5rem;
+    color: rgb(6, 87, 128)
+  }
