@@ -8,7 +8,7 @@ h1{
   font-size: xx-large;
 }
 .welcome{
-  background-color: rgb(27, 73, 96);
+  background-color: rgba(27, 73, 96,0.8);
   height: 100vh;
   color: lightcyan;
   display: flex;

@@ -2,6 +2,13 @@ import Modal from "./Modal";
 import '../styles/navbar.css';
 import logoUml from '../logoUml.svg';
 import React, { useState } from 'react';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faJava } from '@fortawesome/free-brands-svg-icons';
+import { faPhp } from '@fortawesome/free-brands-svg-icons';
+import { faPython } from '@fortawesome/free-brands-svg-icons';
+
+
 
 
 
@@ -17,21 +24,21 @@ export default function Navbar({ showGenerateButton, onCreateDiagram }) {
                         <img src={logoUml} alt="Logo" width="40" height="30" className="d-inline-block align-text-top" />
                         UmlDiagram
                     </a>
-                    <button className="btn btn-outline-primary" onClick={openModal}>
-                        New diagram
-                    </button>
                     {showGenerateButton && (
                         <div class="btn-group">
                             <button class="btn btn-outline-success dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Generate code
                             </button>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Java</a></li>
-                                <li><a class="dropdown-item" href="#">Php</a></li>
-                                <li><a class="dropdown-item" href="#">Python</a></li>
+                                <li><a class="dropdown-item" href="#"><FontAwesomeIcon icon={faJava} /> Java</a></li>
+                                <li><a class="dropdown-item" href="#"><FontAwesomeIcon icon={faPhp} /> Php</a></li>
+                                <li><a class="dropdown-item" href="#"><FontAwesomeIcon icon={faPython} /> Python</a></li>
                             </ul>
                         </div>
                     )}
+                    <button className="btn btn-outline-primary" onClick={openModal}>
+                        New diagram <FontAwesomeIcon icon={faPlus} />
+                    </button>
                 </div>
             </nav>
 
