@@ -104,7 +104,7 @@ function Diagram(){
 
     return(
         <ReactFlowProvider>
-            <div className="diagram-container" ref={reactFlowWrapper}>
+            <div className="diagram-container">
                 <ReactFlow
                     nodes={nodes}
                     edges={edges}

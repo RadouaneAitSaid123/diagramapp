@@ -4,7 +4,7 @@ import {Handle, Position} from "@xyflow/react";
 function UmlClassNode({ data }){
     const handleClassNameChange = useCallback((event) => {
         const newName = event.target.value;
-        data.onClassNameChange(newName); // Fonction fournie pour mettre à jour le nom.
+        data.onClassNameChange(newName);
     }, [data]);
 
 
@@ -19,7 +19,7 @@ function UmlClassNode({ data }){
                 />
             </div>
 
-            {/* Attributs */}
+
             <div style={{borderBottom: '1px solid black', paddingBottom: '5px'}}>
                 <ul style={{padding: 0, margin: 0, listStyle: 'none'}}>
                     {data.attributes.map((attr, index) => (
@@ -28,7 +28,7 @@ function UmlClassNode({ data }){
                 </ul>
             </div>
 
-            {/* Méthodes */}
+
             <div>
                 <ul style={{padding: 0, margin: 0, listStyle: 'none'}}>
                     {data.methods.map((method, index) => (
@@ -37,7 +37,7 @@ function UmlClassNode({ data }){
                 </ul>
             </div>
 
-            {/* Poignées pour les connexions */}
+
             <Handle type="target" position={Position.Top}/>
             <Handle type="source" position={Position.Bottom}/>
         </div>

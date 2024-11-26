@@ -1,5 +1,5 @@
 import {useDnD} from "./DnDProvider";
-
+import '../../styles/gestionDiagram/Sidebar.css'
 function Sidebar(){
     const [_, setType] = useDnD();
 
@@ -9,15 +9,17 @@ function Sidebar(){
     };
 
     return (
-        <aside className="sidebar">
-            <div className="description">Glissez un élément vers le diagramme.</div>
-            <div
-                className="dndnode"
-                onDragStart={(event) => onDragStart(event, 'umlClass')}
-                draggable
-            >
-                Classe UML
-            </div>
+        <aside>
+                <div className="description">
+                    shape your diagram
+                </div>
+                <div
+                    className="dndnode"
+                    onDragStart={(event) => onDragStart(event, 'umlClass')}
+                    draggable
+                >
+                    Classe UML
+                </div>
         </aside>
     );
 }
