@@ -1,10 +1,12 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from './components/Navbar';
-import Diagram from './components/Diagram';
-import { useState } from 'react';
+import Diagram from './components/gestionDiagram/Diagram';
+import React,{useState } from 'react';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
-import React from 'react';
+import Sidebar from "./components/gestionDiagram/Sidebar";
+import {ReactFlowProvider} from "@xyflow/react";
+
 
 
 
@@ -26,7 +28,15 @@ function App() {
           <h1>Welcome to UML Diagram App</h1>
         </div>
       )}
-      {showDiagram && <Diagram />}
+      {showDiagram &&
+          <div>
+              <ReactFlowProvider>
+                  <Diagram />
+                  <Sidebar/>
+              </ReactFlowProvider>
+          </div>
+
+      }
     </div>
   );
 }
