@@ -1,102 +1,87 @@
-import {useCallback, useRef, useState} from "react";
+import React, {useCallback, useRef} from "react";
 import {
     addEdge,
-    applyEdgeChanges,
-    applyNodeChanges,
     Background,
     Controls,
     MiniMap,
-    ReactFlow, ReactFlowProvider, useReactFlow,
+    ReactFlow, ReactFlowProvider, useEdgesState, useNodesState, useReactFlow,
 } from "@xyflow/react";
 import '@xyflow/react/dist/style.css';
 import '../../styles/gestionDiagram/diagram.css'
 import UmlClassNode from "./UmlClassNode";
+import Sidebar from "./Sidebar";
 import DnDProvider, {useDnD} from "./DnDProvider";
 
 const nodeTypes={umlClass: UmlClassNode};
-let id=1;
-const getId=()=> `node_${id++}`;
 
-function Diagram(){
+
+
+const initialNodes=[
+    {
+        id: '1',
+        type: 'umlClass',
+        position: {x: 250, y: 5},
+        data: {
+            className: 'MaClasse',
+            attributes: ['attribut1 : int', 'attribut2 : string'],
+            methods: ['methode1()', 'methode2()'],
+        },
+    },
+]
+const initialEdges = [{ id: 'e1-2', source: '1', target: '2', animated:true }];
+let id = 0;
+const getId = () => `dndnode_${id++}`;
+
+const Diagram = () => {
     const reactFlowWrapper = useRef(null);
-    const [nodes, setNodes]=useState(
-        [
-            {
-                id: '1',
-                type: 'umlClass',
-                position: { x: 250, y: 5 },
+    const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
+    const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
+    const { screenToFlowPosition } = useReactFlow();
+    const [type] = useDnD();
+
+    const onConnect = useCallback(
+        (connection) => setEdges((edg)=>addEdge(connection,edg)),
+        [setEdges]
+    )
+    const onDragOver = useCallback((event) => {
+        event.preventDefault();
+        event.dataTransfer.dropEffect = 'move';
+    }, []);
+
+    const onDrop = useCallback(
+        (event) => {
+            event.preventDefault();
+
+            if (!type) {
+                return;
+            }
+
+
+            const position = screenToFlowPosition({
+                x: event.clientX,
+                y: event.clientY,
+            });
+            const newNode = {
+                id: getId(),
+                type,
+                position,
                 data: {
                     className: 'MaClasse',
                     attributes: ['attribut1 : int', 'attribut2 : string'],
                     methods: ['methode1()', 'methode2()'],
                 },
-            },
-        ]
-    );
-    const [edges, setEdges]=useState([]);
-    const{screenToFlowPosition}=useReactFlow();
-    const [type]=useDnD();
-    const onNodesChange = useCallback(
-        (changes) => setNodes((nds) => applyNodeChanges(changes, nds)),
-        [setNodes]
-    );
-    const onEdgesChange = useCallback(
-        (changes) => setEdges((eds) => applyEdgeChanges(changes, eds)),
-        [setEdges]
-    );
-    const onConnect = useCallback(
-        (connection) => setEdges((edg)=>addEdge(connection,edg)),
-        [setEdges]
-    )
-    const onDrop = useCallback(
-        (event) => {
-            event.preventDefault();
-            if (!type) return;
-            const reactFlowBounds = reactFlowWrapper.current.getBoundingClientRect();
-            const position = screenToFlowPosition({
-                x: event.clientX - reactFlowBounds.left,
-                y: event.clientY - reactFlowBounds.top,
-            });
-
-            const newNode = {
-                id: getId(),
-                type: type,
-                position,
-                data: {
-                    className: 'NouvelleClasse',
-                    attributes: ['attribut1 : string'],
-                    methods: ['methode1()'],
-                },
             };
 
             setNodes((nds) => nds.concat(newNode));
         },
-        [screenToFlowPosition, type]
+        [screenToFlowPosition, type],
     );
 
-    // Gestion du drag au-dessus de la zone
-    const onDragOver = useCallback((event) => {
-        event.preventDefault();
-        event.dataTransfer.dropEffect = 'move';
-    }, []);
-    const nodeColor = (node) => {
-        switch (node.type) {
-            case 'input':
-                return '#6ede87';
-            case 'output':
-                return '#6865A5';
-            default:
-                return '#ff0072';
-        }
-    };
 
 
-
-
-
-    return(
-        <ReactFlowProvider>
-            <div className="diagram-container">
+    return (
+        <div className="dndflow">
+            <div className="diagram-container" ref={reactFlowWrapper}>
                 <ReactFlow
                     nodes={nodes}
                     edges={edges}
@@ -106,22 +91,23 @@ function Diagram(){
                     onDrop={onDrop}
                     onDragOver={onDragOver}
                     nodeTypes={nodeTypes}
-                    selectionOnDrag
+                    fitView
+                    style={{ backgroundColor: "#F7F9FB" }}
                 >
-                    <Controls/>
-                    <MiniMap nodeColor={nodeColor} nodeStrokeWidth={3} pannable/>
-                    <Background variant="dots" gap={12} size={1}/>
+                    <Controls />
+                    <Background />
+                    <MiniMap/>
                 </ReactFlow>
             </div>
-        </ReactFlowProvider>
-
+            <Sidebar />
+        </div>
     );
-}
+};
 
 export default () => (
     <ReactFlowProvider>
         <DnDProvider>
-            <Diagram/>
+            <Diagram />
         </DnDProvider>
     </ReactFlowProvider>
 );
