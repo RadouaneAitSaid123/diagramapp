@@ -11,12 +11,7 @@ function UmlClassNode({ data }){
     return (
         <div className="class-wrapper">
             <div className='class-name-wrapper'>
-                <input
-                    type="text"
-                    value={data.className}
-                    placeholder="Nom de la classe"
-                    style={{width: '100%', border: 'none', outline: 'none'}}
-                />
+                <p>{data.className}</p>
             </div>
 
 

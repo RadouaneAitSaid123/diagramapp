@@ -7,8 +7,9 @@
     border-radius: 2em;
     padding-top: 1em;
     padding-bottom: 1em;
+
     background-color: white;
-    min-width: 2em;
+    min-width: 5em;
 }
 
 .class-name-wrapper{
@@ -17,4 +18,5 @@
     align-items: center;
     font-family: Arial, sans-serif ;
     font-weight: bold;
+    text-align: center;
 }

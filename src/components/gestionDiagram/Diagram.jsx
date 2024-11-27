@@ -29,13 +29,6 @@ function Diagram(){
                     className: 'MaClasse',
                     attributes: ['attribut1 : int', 'attribut2 : string'],
                     methods: ['methode1()', 'methode2()'],
-                    onClassNameChange: (newName) => {
-                        setNodes((nds) =>
-                            nds.map((node) =>
-                                node.id === '1' ? { ...node, data: { ...node.data, className: newName } } : node
-                            )
-                        );
-                    },
                 },
             },
         ]
@@ -58,8 +51,7 @@ function Diagram(){
     const onDrop = useCallback(
         (event) => {
             event.preventDefault();
-            if (!type) return; // Si aucun type sélectionné, ne rien faire
-
+            if (!type) return;
             const reactFlowBounds = reactFlowWrapper.current.getBoundingClientRect();
             const position = screenToFlowPosition({
                 x: event.clientX - reactFlowBounds.left,
