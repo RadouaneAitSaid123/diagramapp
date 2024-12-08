@@ -34,6 +34,7 @@ const initialNodes=[
                     nom:'methode()'
                 }
             ],
+            onChange: ()=>{}
         },
     },
 ]
@@ -93,13 +94,31 @@ const Diagram = () => {
         [screenToFlowPosition, type],
     );
 
+    const updateNodeData = (id, updatedData) => {
+        setNodes((nds) =>
+            nds.map((node) =>
+                node.id === id ? { ...node, data: { ...node.data, ...updatedData } } : node
+            )
+        );
+    };
+
+    const nodesWithHandlers = nodes.map((node) => ({
+        ...node,
+        data: {
+            ...node.data,
+            onChange: (newData) => updateNodeData(node.id, newData),
+        },
+    }));
+
+
+
 
 
     return (
         <div className="dndflow">
             <div className="diagram-container" ref={reactFlowWrapper}>
                 <ReactFlow
-                    nodes={nodes}
+                    nodes={nodesWithHandlers}
                     edges={edges}
                     onNodesChange={onNodesChange}
                     onEdgesChange={onEdgesChange}
