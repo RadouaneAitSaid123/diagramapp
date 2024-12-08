@@ -30,14 +30,23 @@ input{
 }
 #attType{
     width:4em;
+    margin-right: 1em;
+}
+#attNom{
+    width: 9em;
 }
 
 #metEtat{
-    width: 4.5em;
+    width: 2em;
+    margin-right: 4em;
+
 }
 
 #metNom{
-    text-align: left;
+    text-align: right;
+    width: 9em;
+
+
 }
 
 

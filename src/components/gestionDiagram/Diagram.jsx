@@ -30,7 +30,7 @@ const initialNodes=[
 
             methods: [
                 {
-                    etat:'public',
+                    etat:'+',
                     metNom:'methode()'
                 }
             ],
@@ -48,18 +48,12 @@ const Diagram = () => {
     const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
     const { screenToFlowPosition } = useReactFlow();
     const [type] = useDnD();
-
-    const onConnect = useCallback(
-        (connection) => setEdges((edg)=>addEdge(connection,edg)),
-        [setEdges]
-    )
+    const onConnect = useCallback((connection) => setEdges((edg)=>addEdge(connection,edg)), [setEdges])
     const onDragOver = useCallback((event) => {
         event.preventDefault();
         event.dataTransfer.dropEffect = 'move';
     }, []);
-
-    const onDrop = useCallback(
-        (event) => {
+    const onDrop = useCallback((event) => {
             event.preventDefault();
             if (!type) {return;}
             const position = screenToFlowPosition({
@@ -75,25 +69,22 @@ const Diagram = () => {
                     attributes: [
                         {
                             etat:'+',
-                            nom:'nomAttribut',
+                            attNom:'nomAttribut',
                             type:'type'
                         }
                     ],
 
                     methods: [
                         {
-                            etat:'public',
-                            nom:'methode()'
+                            etat:'+',
+                            metNom:'methode()'
                         }
                     ],
                 },
             };
 
             setNodes((nds) => nds.concat(newNode));
-        },
-        [screenToFlowPosition, type],
-    );
-
+        }, [screenToFlowPosition, type],);
     const updateNodeData = (id, updatedData) => {
         setNodes((nds) =>
             nds.map((node) =>
@@ -101,7 +92,6 @@ const Diagram = () => {
             )
         );
     };
-
     const nodesWithHandlers = nodes.map((node) => ({
         ...node,
         data: {

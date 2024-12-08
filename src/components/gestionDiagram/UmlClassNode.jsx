@@ -37,6 +37,7 @@ function UmlClassNode({ data }){
                }}
            />
            <input
+               id="attNom"
                type="text"
                value={attribut.attNom}
                onChange={(e) => {
