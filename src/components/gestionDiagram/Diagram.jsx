@@ -23,7 +23,7 @@ const initialNodes=[
             attributes: [
                 {
                     etat:'+',
-                    nom:'nomAttribut',
+                    attNom:'nomAttribut',
                     type:'type'
                 }
             ],
@@ -31,7 +31,7 @@ const initialNodes=[
             methods: [
                 {
                     etat:'public',
-                    nom:'methode()'
+                    metNom:'methode()'
                 }
             ],
             onChange: ()=>{}

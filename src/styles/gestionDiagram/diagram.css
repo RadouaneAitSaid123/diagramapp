@@ -6,6 +6,7 @@
 .class-wrapper{
    border-radius: 8px;
     min-width: 250px;
+
 }
 
 .class-name-wrapper{
@@ -15,14 +16,28 @@
 }
 input{
     font-weight: bold;
-    color: black;
-   /* background-color: transparent;
+    color:white;
+    background-color: transparent;
     border: none;
-    outline: none;*/
+    outline: none;
     text-align: center;
     padding: 0;
     margin: 0;
 }
+#AttEtat{
+    width: 2em;
+    margin-left: 1em;
+}
+#attType{
+    width:4em;
+}
 
+#metEtat{
+    width: 4.5em;
+}
+
+#metNom{
+    text-align: left;
+}
 
 

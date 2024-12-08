@@ -18,6 +18,7 @@ function UmlClassNode({ data }){
        <div
            style={{
                display: 'flex',
+               justifyContent:'center',
                alignItems: 'center',
                backgroundColor: '#282828',
                padding: '5px, 10px',
@@ -26,6 +27,7 @@ function UmlClassNode({ data }){
            key={attribut.nom}
        >
            <input
+               id="AttEtat"
                type="text"
                value={attribut.etat}
                onChange={(e) => {
@@ -36,14 +38,15 @@ function UmlClassNode({ data }){
            />
            <input
                type="text"
-               value={attribut.nom}
+               value={attribut.attNom}
                onChange={(e) => {
                    const updatedAttributes = [...data.attributes];
-                   updatedAttributes[index].nom = e.target.value;
+                   updatedAttributes[index].attNom = e.target.value;
                    data.onChange({attributes: updatedAttributes});
                }}
            />
            <input
+               id="attType"
                type="text"
                value={attribut.type}
                onChange={(e) => {
@@ -59,6 +62,7 @@ function UmlClassNode({ data }){
         <div
             style={{
                 display: 'flex',
+                justifyContent:'center',
                 alignItems: 'center',
                 backgroundColor: '#282828',
                 padding: '5px, 10px',
@@ -67,6 +71,7 @@ function UmlClassNode({ data }){
             key={method.nom}
         >
             <input
+                id="metEtat"
                 type="text"
                 value={method.etat}
                 onChange={(e) => {
@@ -76,11 +81,12 @@ function UmlClassNode({ data }){
                 }}
             />
             <input
+                id='metNom'
                 type="text"
-                value={method.nom}
+                value={method.metNom}
                 onChange={(e) => {
                     const updatedMethods = [...data.methods];
-                    updatedMethods[index].nom = e.target.value;
+                    updatedMethods[index].metNom = e.target.value;
                     data.onChange({methods: updatedMethods});
                 }}
             />
