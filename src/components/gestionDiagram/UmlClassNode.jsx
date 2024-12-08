@@ -1,38 +1,45 @@
-import {useCallback} from "react";
 import {Handle, Position} from "@xyflow/react";
 
+
 function UmlClassNode({ data }){
-    const handleClassNameChange = useCallback((event) => {
-        const newName = event.target.value;
-        data.onClassNameChange(newName);
-    }, [data]);
 
+   const fields=data.attributes.map(attribut =>
+    <div style={{display:'flex',
+        alignItems:'center',
+        backgroundColor:'#232323',
+        padding:'5px, 10px',
+        color:'white'}}>
+        <p>{attribut.etat}</p>
+        <p>{attribut.nom}</p>
+        <p style={{marginLeft:'10px'}}>{attribut.type}</p>
+    </div>
+   );
 
+       const meth=data.methods.map(method =>
+           <div style={{
+               display: 'flex',
+               alignItems: 'center',
+               backgroundColor: '#282828',
+               padding: '5px, 10px',
+               color: 'white'
+           }}>
+               <p style={{marginLeft: '10px'}}>{method.etat}</p>
+               <p style={{marginLeft:'10px'}}>{method.nom}</p>
+           </div>
+
+);
     return (
         <div className="class-wrapper">
             <div className='class-name-wrapper'>
                 <p>{data.className}</p>
             </div>
-
-
-            <div style={{borderBottom: '1px solid black', paddingBottom: '5px'}}>
-                <ul style={{padding: 0, margin: 0, listStyle: 'none'}}>
-                    {data.attributes.map((attr, index) => (
-                        <li key={index}>+ {attr}</li>
-                    ))}
-                </ul>
-            </div>
-
-
-            <div>
-                <ul style={{padding: 0, margin: 0, listStyle: 'none'}}>
-                    {data.methods.map((method, index) => (
-                        <li key={index}>+ {method}()</li>
-                    ))}
-                </ul>
-            </div>
-
-
+            {fields}
+            <div style={{
+                height: '1px',
+                backgroundColor: 'white',
+                margin: '10px 0',
+            }}></div>
+            {meth}
             <Handle type="target" position={Position.Top}/>
             <Handle type="source" position={Position.Bottom}/>
         </div>

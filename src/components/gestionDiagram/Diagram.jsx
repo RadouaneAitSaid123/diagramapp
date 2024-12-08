@@ -1,7 +1,7 @@
 import React, {useCallback, useRef} from "react";
 import {
     addEdge,
-    Background,
+    Background, BackgroundVariant,
     Controls,
     MiniMap,
     ReactFlow, ReactFlowProvider, useEdgesState, useNodesState, useReactFlow,
@@ -13,18 +13,27 @@ import Sidebar from "./Sidebar";
 import DnDProvider, {useDnD} from "./DnDProvider";
 
 const nodeTypes={umlClass: UmlClassNode};
-
-
-
 const initialNodes=[
     {
         id: '1',
         type: 'umlClass',
-        position: {x: 250, y: 5},
+        position: {x: 0, y: 0},
         data: {
-            className: 'MaClasse',
-            attributes: ['attribut1 : int', 'attribut2 : string'],
-            methods: ['methode1()', 'methode2()'],
+            className: 'Ma Classe',
+            attributes: [
+                {
+                    etat:'+',
+                    nom:'nomAttribut',
+                    type:'type'
+                }
+            ],
+
+            methods: [
+                {
+                    etat:'public',
+                    nom:'methode()'
+                }
+            ],
         },
     },
 ]
@@ -51,12 +60,7 @@ const Diagram = () => {
     const onDrop = useCallback(
         (event) => {
             event.preventDefault();
-
-            if (!type) {
-                return;
-            }
-
-
+            if (!type) {return;}
             const position = screenToFlowPosition({
                 x: event.clientX,
                 y: event.clientY,
@@ -66,9 +70,21 @@ const Diagram = () => {
                 type,
                 position,
                 data: {
-                    className: 'MaClasse',
-                    attributes: ['attribut1 : int', 'attribut2 : string'],
-                    methods: ['methode1()', 'methode2()'],
+                    className: 'Ma Classe',
+                    attributes: [
+                        {
+                            etat:'+',
+                            nom:'nomAttribut',
+                            type:'type'
+                        }
+                    ],
+
+                    methods: [
+                        {
+                            etat:'public',
+                            nom:'methode()'
+                        }
+                    ],
                 },
             };
 
@@ -92,10 +108,9 @@ const Diagram = () => {
                     onDragOver={onDragOver}
                     nodeTypes={nodeTypes}
                     fitView
-                    style={{ backgroundColor: "#F7F9FB" }}
                 >
                     <Controls />
-                    <Background />
+                    <Background color="#222" variant={BackgroundVariant.Lines}/>
                     <MiniMap/>
                 </ReactFlow>
             </div>
