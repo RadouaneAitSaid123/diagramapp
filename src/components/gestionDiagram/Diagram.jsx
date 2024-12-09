@@ -31,6 +31,7 @@ const initialNodes=[
             methods: [
                 {
                     etat:'+',
+                    typeRetour:'type',
                     metNom:'methode()'
                 }
             ],
@@ -77,6 +78,7 @@ const Diagram = () => {
                     methods: [
                         {
                             etat:'+',
+                            typeRetour:'type',
                             metNom:'methode()'
                         }
                     ],

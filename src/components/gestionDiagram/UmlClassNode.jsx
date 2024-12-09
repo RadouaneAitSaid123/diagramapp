@@ -82,6 +82,16 @@ function UmlClassNode({ data }){
                 }}
             />
             <input
+                id="metType"
+                type="text"
+                value={method.typeRetour}
+                onChange={(e) => {
+                    const updatedMethods = [...data.methods];
+                    updatedMethods[index].typeRetour = e.target.value;
+                    data.onChange({methods: updatedMethods});
+                }}
+            />
+            <input
                 id='metNom'
                 type="text"
                 value={method.metNom}

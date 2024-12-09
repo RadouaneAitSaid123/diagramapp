@@ -39,15 +39,15 @@ input{
 
 #metEtat{
     width: 2em;
-    margin-right: 4em;
-
+    margin-left: 1em;
 }
 
 #metNom{
-    text-align: right;
     width: 9em;
-
-
+    margin-right: 1em;
+}
+#metType{
+    width:4em;
 }
 
 
