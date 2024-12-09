@@ -1,11 +1,10 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from './components/Navbar';
-
 import React,{useState } from 'react';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
-import Sidebar from "./components/gestionDiagram/Sidebar";
 import Diagram from "./components/gestionDiagram/Diagram";
+
 
 
 
@@ -31,8 +30,7 @@ function App() {
       )}
       {showDiagram &&
           <div className="dndflow">
-              <Diagram />
-              <Sidebar/>
+                  <Diagram />
           </div>
 
       }
