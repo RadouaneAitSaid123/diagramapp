@@ -38,6 +38,7 @@ const initialNodes=[
             onChange: ()=>{}
         },
     },
+
 ]
 const initialEdges = [{ id: 'e1-2', source: '1', target: '2', animated:true }];
 let id = 0;
@@ -87,6 +88,8 @@ const Diagram = () => {
 
             setNodes((nds) => nds.concat(newNode));
         }, [screenToFlowPosition, type],);
+
+
     const updateNodeData = (id, updatedData) => {
         setNodes((nds) =>
             nds.map((node) =>
