@@ -1,4 +1,5 @@
-import React, {useCallback, useRef} from "react";
+import React, { useCallback, useRef } from "react";
+import CustomEdge from "./CustomEdge";
 import {
     addEdge,
     Background, BackgroundVariant,
@@ -10,36 +11,43 @@ import '@xyflow/react/dist/style.css';
 import '../../styles/gestionDiagram/diagram.css'
 import UmlClassNode from "./UmlClassNode";
 import Sidebar from "./Sidebar";
-import DnDProvider, {useDnD} from "./DnDProvider";
+import DnDProvider, { useDnD } from "./DnDProvider";
 
-const nodeTypes={umlClass: UmlClassNode};
-const initialNodes=[
+const nodeTypes = { umlClass: UmlClassNode };
+const initialNodes = [
     {
         id: '1',
         type: 'umlClass',
-        position: {x: 0, y: 0},
+        position: { x: 0, y: 0 },
         data: {
             className: 'Ma Classe',
             attributes: [
                 {
-                    etat:'+',
-                    attNom:'nomAttribut',
-                    type:'type'
+                    etat: '+',
+                    attNom: 'nomAttribut',
+                    type: 'type'
                 }
             ],
 
             methods: [
                 {
-                    etat:'+',
-                    typeRetour:'type',
-                    metNom:'methode()'
+                    etat: '+',
+                    typeRetour: 'type',
+                    metNom: 'methode()'
                 }
             ],
-            onChange: ()=>{}
+            onChange: () => { }
         },
     },
 ]
-const initialEdges = [{ id: 'e1-2', source: '1', target: '2', animated:true }];
+//const initialEdges = [{ id: 'e1-2', source: '1', target: '2', animated: true }];
+const initialEdges = [
+    { id: 'e1-2', source: '1', target: '2', type: 'custom', data: { relationType: 'inheritance' } },
+    { id: 'e2-3', source: '2', target: '3', type: 'custom', data: { relationType: 'implementation' } },
+    { id: 'e3-4', source: '3', target: '4', type: 'custom', data: { relationType: 'aggregation' } },
+    { id: 'e4-5', source: '4', target: '5', type: 'custom', data: { relationType: 'composition' } },
+];
+
 let id = 0;
 const getId = () => `dndnode_${id++}`;
 
@@ -49,50 +57,66 @@ const Diagram = () => {
     const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
     const { screenToFlowPosition } = useReactFlow();
     const [type] = useDnD();
-    const onConnect = useCallback((connection) => setEdges((edg)=>addEdge(connection,edg)), [setEdges])
+    
+    const onConnect = useCallback((connection) => {
+        setEdges((edges) =>
+            addEdge(
+                {
+                    ...connection,
+                    type: 'custom',
+                    data: { relationType: type  || "association" }, // Inclure le type de relation
+                },
+                edges
+            )
+        );
+    }, [setEdges, type]);
+
     const onDragOver = useCallback((event) => {
         event.preventDefault();
         event.dataTransfer.dropEffect = 'move';
     }, []);
     const onDrop = useCallback((event) => {
-            event.preventDefault();
-            if (!type) {return;}
-            const position = screenToFlowPosition({
-                x: event.clientX,
-                y: event.clientY,
-            });
-            const newNode = {
-                id: getId(),
-                type,
-                position,
-                data: {
-                    className: 'Ma Classe',
-                    attributes: [
-                        {
-                            etat:'+',
-                            attNom:'nomAttribut',
-                            type:'type'
-                        }
-                    ],
+        event.preventDefault();
+        if (!type) { return; }
+        const position = screenToFlowPosition({
+            x: event.clientX,
+            y: event.clientY,
+        });
+        const newNode = {
+            id: getId(),
+            type,
+            position,
+            data: {
+                className: 'Ma Classe',
+                attributes: [
+                    {
+                        etat: '+',
+                        attNom: 'nomAttribut',
+                        type: 'type'
+                    }
+                ],
 
-                    methods: [
-                        {
-                            etat:'+',
-                            typeRetour:'type',
-                            metNom:'methode()'
-                        }
-                    ],
-                },
-            };
+                methods: [
+                    {
+                        etat: '+',
+                        typeRetour: 'type',
+                        metNom: 'methode()'
+                    }
+                ],
+            },
+        };
 
-            setNodes((nds) => nds.concat(newNode));
-        }, [screenToFlowPosition, type],);
+        setNodes((nds) => nds.concat(newNode));
+    }, [screenToFlowPosition, type],);
     const updateNodeData = (id, updatedData) => {
         setNodes((nds) =>
             nds.map((node) =>
                 node.id === id ? { ...node, data: { ...node.data, ...updatedData } } : node
             )
         );
+    };
+    const edgeTypes = {
+        custom: CustomEdge,
     };
     const nodesWithHandlers = nodes.map((node) => ({
         ...node,
@@ -118,11 +142,12 @@ const Diagram = () => {
                     onDrop={onDrop}
                     onDragOver={onDragOver}
                     nodeTypes={nodeTypes}
+                    edgeTypes={edgeTypes}
                     fitView
                 >
                     <Controls />
-                    <Background color="#222" variant={BackgroundVariant.Lines}/>
-                    <MiniMap/>
+                    <Background color="#222" variant={BackgroundVariant.Lines} />
+                    <MiniMap />
                 </ReactFlow>
             </div>
             <Sidebar />

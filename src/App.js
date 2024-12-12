@@ -1,9 +1,10 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from './components/Navbar';
-import React,{useState } from 'react';
+import React, { useState } from 'react';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import Diagram from "./components/gestionDiagram/Diagram";
+import SVGDefs from './components/gestionDiagram/SVGDefs';
 
 
 
@@ -29,9 +30,10 @@ function App() {
         </div>
       )}
       {showDiagram &&
-          <div className="dndflow">
-                  <Diagram />
-          </div>
+        <div className="dndflow">
+          <SVGDefs />
+          <Diagram />
+        </div>
 
       }
     </div>

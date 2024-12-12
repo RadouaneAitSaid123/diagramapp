@@ -20,3 +20,6 @@ aside{
     align-items: center;
     cursor: grab;
 }
+.list-group{
+    margin-top: 10px;
+}
