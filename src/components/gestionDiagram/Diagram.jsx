@@ -11,8 +11,10 @@ import '../../styles/gestionDiagram/diagram.css'
 import UmlClassNode from "./UmlClassNode";
 import Sidebar from "./Sidebar";
 import DnDProvider, {useDnD} from "./DnDProvider";
+import UmlInterfaceNode from "./UmlInterfaceNode";
+import UmlAbstractNode from "./UmlAbstractNode";
 
-const nodeTypes={umlClass: UmlClassNode};
+const nodeTypes={umlClass: UmlClassNode, umlInterface:UmlInterfaceNode,umlAbstractClass:UmlAbstractNode};
 const initialNodes=[
     {
         id: '1',
@@ -41,6 +43,7 @@ const initialNodes=[
 
 ]
 const initialEdges = [{ id: 'e1-2', source: '1', target: '2', animated:true }];
+
 let id = 0;
 const getId = () => `dndnode_${id++}`;
 
@@ -67,9 +70,10 @@ const Diagram = () => {
                 type,
                 position,
                 data: {
-                    className: 'Ma Classe',
+                    className: 'Nom',
                     attributes: [
                         {
+                            id:0,
                             etat:'+',
                             attNom:'nomAttribut',
                             type:'type'
@@ -78,6 +82,7 @@ const Diagram = () => {
 
                     methods: [
                         {
+                            id:0,
                             etat:'+',
                             typeRetour:'type',
                             metNom:'methode()'
@@ -97,12 +102,9 @@ const Diagram = () => {
             )
         );
     };
+
     const nodesWithHandlers = nodes.map((node) => ({
-        ...node,
-        data: {
-            ...node.data,
-            onChange: (newData) => updateNodeData(node.id, newData),
-        },
+        ...node, data: {...node.data, onChange: (newData) => updateNodeData(node.id, newData),},
     }));
 
 

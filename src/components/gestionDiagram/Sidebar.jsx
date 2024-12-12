@@ -18,8 +18,23 @@ function Sidebar(){
                     onDragStart={(event) => onDragStart(event, 'umlClass')}
                     draggable
                 >
-                    Classe UML
+                    Classe
                 </div>
+            <div
+                    className="dndnode"
+                    onDragStart={(event) => onDragStart(event, 'umlInterface')}
+                    draggable
+                >
+                    Interface
+                </div>
+            <div
+                    className="dndnode"
+                    onDragStart={(event) => onDragStart(event, 'umlAbstractClass')}
+                    draggable
+                >
+                    Abstract
+                </div>
+
         </aside>
     );
 }
