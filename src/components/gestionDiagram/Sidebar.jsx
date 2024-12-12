@@ -24,6 +24,10 @@ function Sidebar() {
                 </a>
                 <a href="#" className="list-group-item list-group-item-action dndnode" onDragStart={(event) => onDragStart(event, 'umlClass')}
                     draggable> Classe UML</a>
+                     <a href="#" className="list-group-item list-group-item-action dndnode" onDragStart={(event) => onDragStart(event, 'umlInterface')}
+                    draggable> Interface</a>
+                     <a href="#" className="list-group-item list-group-item-action dndnode" onDragStart={(event) => onDragStart(event, 'umlAbstractClass')}
+                    draggable> Abstract</a>
             </div>
 
             <div className="list-group">

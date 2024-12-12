@@ -1,10 +1,7 @@
-import {Handle, NodeToolbar, Position} from "@xyflow/react";
+import {Handle, Position} from "@xyflow/react";
 import PropTypes from "prop-types";
-import {useState} from "react";
 
-
-
-UmlClassNode.propTypes = {
+UmlAbstractNode.propTypes = {
     data: PropTypes.shape({
         className: PropTypes.string.isRequired,
         attributes: PropTypes.array.isRequired,
@@ -12,8 +9,7 @@ UmlClassNode.propTypes = {
         onChange: PropTypes.func.isRequired,
     }).isRequired,
 };
-
-function UmlClassNode(props){
+function UmlAbstractNode(props){
     const divStyle={
         display: "flex",
         justifyContent: "center",
@@ -28,18 +24,9 @@ function UmlClassNode(props){
         backgroundColor: "white",
         margin: "10px 0",
     }
-    const buttonStyle={
-        border:'none',
-        animation: 'fadeIn 0.5s ease-in-out',
-        borderRadius: '8px',
-        margin: '2px',
-        color: 'white',
-        fontWeight:'bold',
-        backgroundColor: "#3d5787",
-    }
 
 
-    const attributsDeClasse=props.data.attributes.map((attribut,index)=>(
+    const attributsAbstract=props.data.attributes.map((attribut,index)=>(
         <div key={attribut.id} style={divStyle}>
             <input id="AttEtat" value={attribut.etat} onChange={(e)=>{
                 const updatedAttributes = [...props.data.attributes];
@@ -59,7 +46,7 @@ function UmlClassNode(props){
         </div>
     ));
 
-    const methodsDeClasse=props.data.methods.map((methode,index)=>(
+    const methodsAbstract=props.data.methods.map((methode,index)=>(
         <div key={methode.id} style={divStyle}>
             <input id="metEtat" value={methode.etat} onChange={(e)=>{
                 const updatedMethode=[...props.data.methods];
@@ -78,24 +65,21 @@ function UmlClassNode(props){
             }}/>
         </div>
     ));
-
-
-
-
-
     return (
         <div className="class-wrapper">
             <div className="class-name-wrapper">
-
-                <input value={props.data.className} onChange={(e)=>{props.data.onChange({className: e.target.value})}}/>
+                <p>abstract</p>
+                <input value={props.data.className} onChange={(e) => {
+                    props.data.onChange({className: e.target.value})
+                }}/>
             </div>
-            {attributsDeClasse}
+            {attributsAbstract}
             <div style={lineStyle}></div>
-            {methodsDeClasse}
+            {methodsAbstract}
             <Handle type="target" position={Position.Top}/>
             <Handle type="source" position={Position.Bottom}/>
         </div>
     );
 }
 
-export default UmlClassNode;
+export default UmlAbstractNode;
