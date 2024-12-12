@@ -40,12 +40,14 @@ const initialNodes = [
         },
     },
 ]
-//const initialEdges = [{ id: 'e1-2', source: '1', target: '2', animated: true }];
+
 const initialEdges = [
     { id: 'e1-2', source: '1', target: '2', type: 'custom', data: { relationType: 'inheritance' } },
     { id: 'e2-3', source: '2', target: '3', type: 'custom', data: { relationType: 'implementation' } },
     { id: 'e3-4', source: '3', target: '4', type: 'custom', data: { relationType: 'aggregation' } },
     { id: 'e4-5', source: '4', target: '5', type: 'custom', data: { relationType: 'composition' } },
+    { id: 'e5-6', source: '5', target: '6', type: 'custom', data: { relationType: 'composition' } },
+    { id: 'e6-7', source: '6', target: '7', type: 'custom', data: { relationType: 'composition' } },
 ];
 
 let id = 0;
@@ -64,7 +66,7 @@ const Diagram = () => {
                 {
                     ...connection,
                     type: 'custom',
-                    data: { relationType: type  || "association" }, // Inclure le type de relation
+                    data: { relationType: type  || "association" },
                 },
                 edges
             )

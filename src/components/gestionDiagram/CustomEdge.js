@@ -21,8 +21,8 @@ const CustomEdge = ({
     });
 
     // Déterminer le marqueur selon le type de relation
+    let markerEnd = null;
     let markerStart = null;
-    let markerEnd;
     switch (data?.relationType) {
         case 'inheritance': // Héritage
             markerEnd = 'url(#arrowhead)';
@@ -36,6 +36,13 @@ const CustomEdge = ({
         case 'implementation':
             markerEnd = 'url(#dashed-line)';
             break;
+        case 'unidirectionnelle': // Héritage
+            markerEnd = 'url(#unidirectional-arrowhead)';
+            break;
+            case 'bidirectional': // Navigabilité bidirectionnelle
+            markerStart = 'url(#bidirectional-arrow-start)';
+            markerEnd = 'url(#bidirectional-arrow-end)';
+            break;
 
         default:
             markerEnd = null; // Association normale (aucun marqueur spécial)
@@ -48,7 +55,8 @@ const CustomEdge = ({
             style={{
                 strokeWidth: 2,
                 stroke: 'white',
-                markerEnd: markerEnd,  // Application du marqueur en fonction du type de relation
+                markerStart: markerStart,  // Applique le marqueur de départ pour la relation bidirectionnelle
+                markerEnd: markerEnd,
                 strokeDasharray: data?.relationType === 'implementation' ? '5,5' : '0', // Ligne en tirets pour l'implémentation
             }}
         />

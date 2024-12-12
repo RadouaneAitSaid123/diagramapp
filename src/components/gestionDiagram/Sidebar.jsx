@@ -5,24 +5,17 @@ import { faRightLong } from '@fortawesome/free-solid-svg-icons';
 import { faDiamond } from '@fortawesome/free-solid-svg-icons';
 import { faStairs } from '@fortawesome/free-solid-svg-icons';
 import { faMinus } from '@fortawesome/free-solid-svg-icons';
-import { useState } from "react";
 
 
 export default Sidebar;
 
 function Sidebar() {
     const [type, setType] = useDnD();
-    const [navigability, setNavigability] = useState('unidirectional');
 
     const onDragStart = (event, nodeType) => {
         setType(nodeType);
         event.dataTransfer.effectAllowed = 'move';
     };
-
-    const handleNavigabilityChange = (event) => {
-        setNavigability(event.target.value);
-    };
-
     return (
         <aside>
             <div className="list-group">
@@ -44,21 +37,14 @@ function Sidebar() {
                 <a href="#" className="list-group-item list-group-item-action" onClick={() => setType('composition')}>Composition <FontAwesomeIcon icon={faDiamond} /></a>
             </div>
 
-            <div className="navigability-section">
-                <div className="navigability-header">Navigabilité</div>
-                <div className="navigability-dropdown">
-                    <label htmlFor="navigability-type">Type de navigabilité :</label>
-                    <select
-                        id="navigability-type"
-                        value={navigability}
-                        onChange={handleNavigabilityChange}
-                    >
-                        <option value="unidirectional">Unidirectionnelle</option>
-                        <option value="bidirectional">Bidirectionnelle</option>
-                    </select>
-                </div>
+            <div className="list-group">
+                <a href="#" className="list-group-item list-group-item-action active" aria-current="true">
+                    Navigabilité
+                </a>
+                <a href="#" className="list-group-item list-group-item-action" onClick={() => setType('unidirectionnelle')}>Unidirectionnelle</a>
+                <a href="#" className="list-group-item list-group-item-action" onClick={() => setType('bidirectional')}>Bidirectionnelle </a>
             </div>
+
         </aside>
     );
 }
-

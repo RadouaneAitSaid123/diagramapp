@@ -5,14 +5,6 @@ import React, { useState } from 'react';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import Diagram from "./components/gestionDiagram/Diagram";
 import SVGDefs from './components/gestionDiagram/SVGDefs';
-
-
-
-
-
-
-
-
 function App() {
   const [showDiagram, setShowDiagram] = useState(false);
   return (
