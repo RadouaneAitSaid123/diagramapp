@@ -1,6 +1,6 @@
 import {Handle, Position} from "@xyflow/react";
 import PropTypes from "prop-types";
-import UmlInterfaceNode from "./UmlInterfaceNode";
+
 UmlAbstractNode.propTypes = {
     data: PropTypes.shape({
         className: PropTypes.string.isRequired,
@@ -24,15 +24,7 @@ function UmlAbstractNode(props){
         backgroundColor: "white",
         margin: "10px 0",
     }
-    const buttonStyle={
-        border:'none',
-        animation: 'fadeIn 0.5s ease-in-out',
-        borderRadius: '8px',
-        margin: '2px',
-        color: 'white',
-        fontWeight:'bold',
-        backgroundColor: "#3d5787",
-    }
+
 
     const attributsAbstract=props.data.attributes.map((attribut,index)=>(
         <div key={attribut.id} style={divStyle}>
