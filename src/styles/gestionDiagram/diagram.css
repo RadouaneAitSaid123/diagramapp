@@ -15,7 +15,7 @@
     border-radius: 8px 8px 0 0;
     background-color: #3d5787;
 }
-.class-name-wrapper p{
+.specification{
     font-weight: bold;
     color: #eeeeee;
     margin: 0;
@@ -71,8 +71,6 @@ input{
     margin: 10px 0;
 }
 
-button{
 
-}
 
 

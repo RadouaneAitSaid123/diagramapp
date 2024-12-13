@@ -119,6 +119,8 @@ function UmlClassNode(props){
     return (
         <div className="class-wrapper" onDoubleClick={handleDoubleClick}>
             <div className="class-name-wrapper">
+                {props.type==="umlInterface" && <div className="specification">&lt;&lt;Interface&gt;&gt;</div>}
+                {props.type==="umlAbstractClass" && <div className="specification">&lt;&lt;Abstract&gt;&gt;</div>}
                 <input value={props.data.className} onChange={(e)=>{props.data.onChange({className: e.target.value})}}/>
             </div>
             {attributsDeClasse}
