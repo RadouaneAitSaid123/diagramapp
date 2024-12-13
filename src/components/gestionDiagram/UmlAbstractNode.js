@@ -10,24 +10,10 @@ UmlAbstractNode.propTypes = {
     }).isRequired,
 };
 function UmlAbstractNode(props){
-    const divStyle={
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        backgroundColor: "#282828",
-        padding: "5px, 10px",
-        color: "white",
-        cursor:"pointer",
-    }
-    const lineStyle={
-        height: "1px",
-        backgroundColor: "white",
-        margin: "10px 0",
-    }
 
 
     const attributsAbstract=props.data.attributes.map((attribut,index)=>(
-        <div key={attribut.id} style={divStyle}>
+        <div key={attribut.id} className="divStyle">
             <input id="AttEtat" value={attribut.etat} onChange={(e)=>{
                 const updatedAttributes = [...props.data.attributes];
                 updatedAttributes[index].etat = e.target.value;
@@ -47,7 +33,7 @@ function UmlAbstractNode(props){
     ));
 
     const methodsAbstract=props.data.methods.map((methode,index)=>(
-        <div key={methode.id} style={divStyle}>
+        <div key={methode.id} className="divStyle">
             <input id="metEtat" value={methode.etat} onChange={(e)=>{
                 const updatedMethode=[...props.data.methods];
                 updatedMethode[index].etat=e.target.value;
@@ -74,7 +60,7 @@ function UmlAbstractNode(props){
                 }}/>
             </div>
             {attributsAbstract}
-            <div style={lineStyle}></div>
+            <div className="lineStyle"></div>
             {methodsAbstract}
             <Handle type="target" position={Position.Top}/>
             <Handle type="source" position={Position.Bottom}/>
