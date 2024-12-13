@@ -15,8 +15,8 @@ import DnDProvider, { useDnD } from "./DnDProvider";
 import UmlInterfaceNode from "./UmlInterfaceNode";
 import UmlAbstractNode from "./UmlAbstractNode";
 
-const nodeTypes = { umlClass: UmlClassNode, umlInterface: UmlInterfaceNode, umlAbstractClass: UmlAbstractNode };
-const initialNodes = [
+const nodeTypes={umlClass: UmlClassNode, umlInterface: UmlClassNode, umlAbstractClass: UmlClassNode};
+const initialNodes=[
     {
         id: '1',
         type: 'umlClass',
@@ -56,7 +56,7 @@ const getId = () => `dndnode_${id++}`;
 
 const Diagram = () => {
     const reactFlowWrapper = useRef(null);
-    const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
+    const [nodes, setNodes, onNodesChange] = useNodesState([]);
     const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
     const { screenToFlowPosition } = useReactFlow();
     const [type] = useDnD();
