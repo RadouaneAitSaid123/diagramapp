@@ -18,6 +18,7 @@
 .class-name-wrapper p{
     font-weight: bold;
     color: #eeeeee;
+    margin: 0;
 }
 input{
     font-weight: bold;
@@ -27,7 +28,8 @@ input{
     outline: none;
     text-align: center;
     padding: 0;
-    margin: 0;
+    margin-bottom: 2px;
+
 }
 #AttEtat{
     width: 2em;
@@ -67,6 +69,10 @@ input{
     height: 1px;
     background-color: white;
     margin: 10px 0;
+}
+
+button{
+
 }
 
 

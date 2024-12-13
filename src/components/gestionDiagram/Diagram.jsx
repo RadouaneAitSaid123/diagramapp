@@ -49,7 +49,7 @@ const getId = () => `dndnode_${id++}`;
 
 const Diagram = () => {
     const reactFlowWrapper = useRef(null);
-    const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
+    const [nodes, setNodes, onNodesChange] = useNodesState([]);
     const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
     const { screenToFlowPosition } = useReactFlow();
     const [type] = useDnD();

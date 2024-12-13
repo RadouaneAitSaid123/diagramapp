@@ -2,6 +2,8 @@ import {Handle, NodeToolbar, Position} from "@xyflow/react";
 import PropTypes from "prop-types";
 import {useState} from "react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import { faGear,faPlus  } from '@fortawesome/free-solid-svg-icons';
+
 
 
 
@@ -124,10 +126,10 @@ function UmlClassNode(props){
             {methodsDeClasse}
             <NodeToolbar position={Position.Left} isVisible={isVisible}>
                 <button onClick={addAttribut}>
-                    <FontAwesomeIcon icon="fa-solid fa-plus" />
+                    <FontAwesomeIcon icon={faPlus} />
                 </button>
-                <button onClick={addMethod}>
-                    <FontAwesomeIcon icon="fa-solid fa-grip-lines" />
+                <button onClick={addMethod} style={{justifyContent:'center',alignItems:"center",display:"flex"}}>
+                    <FontAwesomeIcon icon={faGear} />
                 </button>
             </NodeToolbar>
             <NodeToolbar position={Position.Right} isVisible={attDIsVisible}>
