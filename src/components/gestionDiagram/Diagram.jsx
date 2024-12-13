@@ -11,10 +11,9 @@ import '../../styles/gestionDiagram/diagram.css'
 import UmlClassNode from "./UmlClassNode";
 import Sidebar from "./Sidebar";
 import DnDProvider, {useDnD} from "./DnDProvider";
-import UmlInterfaceNode from "./UmlInterfaceNode";
-import UmlAbstractNode from "./UmlAbstractNode";
 
-const nodeTypes={umlClass: UmlClassNode, umlInterface:UmlInterfaceNode,umlAbstractClass:UmlAbstractNode};
+
+const nodeTypes={umlClass: UmlClassNode, umlInterface: UmlClassNode, umlAbstractClass: UmlClassNode};
 const initialNodes=[
     {
         id: '1',
