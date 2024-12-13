@@ -19,20 +19,20 @@ function Sidebar() {
     return (
         <aside>
             <div className="list-group">
-                <a href="#" className="list-group-item list-group-item-action active description" aria-current="true">
-                    Shape your diagram
+                <a href="#" className="list-group-item list-group-item-action titre" aria-current="true">
+                    <h6>Shape your diagram</h6>
                 </a>
                 <a href="#" className="list-group-item list-group-item-action dndnode" onDragStart={(event) => onDragStart(event, 'umlClass')}
-                    draggable> Classe UML</a>
+                    draggable> Classe</a>
                      <a href="#" className="list-group-item list-group-item-action dndnode" onDragStart={(event) => onDragStart(event, 'umlInterface')}
                     draggable> Interface</a>
                      <a href="#" className="list-group-item list-group-item-action dndnode" onDragStart={(event) => onDragStart(event, 'umlAbstractClass')}
-                    draggable> Abstract</a>
+                    draggable> Classe abstract</a>
             </div>
 
             <div className="list-group">
-                <a href="#" className="list-group-item list-group-item-action active" aria-current="true">
-                    Relations
+                <a href="#" className="list-group-item list-group-item-action titre" aria-current="true">
+                    <h6>Relations</h6>
                 </a>
                 <a href="#" className="list-group-item list-group-item-action" onClick={() => setType('association')}>Association <FontAwesomeIcon icon={faStairs} /></a>
                 <a href="#" className="list-group-item list-group-item-action" onClick={() => setType('inheritance')}>Héritage <FontAwesomeIcon icon={faRightLong} /></a>
@@ -42,8 +42,8 @@ function Sidebar() {
             </div>
 
             <div className="list-group">
-                <a href="#" className="list-group-item list-group-item-action active" aria-current="true">
-                    Navigabilité
+                <a href="#" className="list-group-item list-group-item-action titre">
+                   <h6>Navigabilité</h6>
                 </a>
                 <a href="#" className="list-group-item list-group-item-action" onClick={() => setType('unidirectionnelle')}>Unidirectionnelle</a>
                 <a href="#" className="list-group-item list-group-item-action" onClick={() => setType('bidirectional')}>Bidirectionnelle </a>

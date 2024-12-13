@@ -39,7 +39,7 @@ const CustomEdge = ({
         case 'unidirectionnelle': // Héritage
             markerEnd = 'url(#unidirectional-arrowhead)';
             break;
-            case 'bidirectional': // Navigabilité bidirectionnelle
+        case 'bidirectional': // Navigabilité bidirectionnelle
             markerStart = 'url(#bidirectional-arrow-start)';
             markerEnd = 'url(#bidirectional-arrow-end)';
             break;
@@ -48,18 +48,50 @@ const CustomEdge = ({
             markerEnd = null; // Association normale (aucun marqueur spécial)
     }
 
+    // Récupérer les cardinalités
+    const sourceCardinality = data?.sourceCardinality || '';
+    const targetCardinality = data?.targetCardinality || '';
+
+    console.log("Source Cardinality:", sourceCardinality);
+    console.log("Target Cardinality:", targetCardinality);
+
+
     return (
-        <path
-            id={id}
-            d={`M${sourceX},${sourceY} L${targetX},${targetY}`}
-            style={{
-                strokeWidth: 2,
-                stroke: 'white',
-                markerStart: markerStart,  // Applique le marqueur de départ pour la relation bidirectionnelle
-                markerEnd: markerEnd,
-                strokeDasharray: data?.relationType === 'implementation' ? '5,5' : '0', // Ligne en tirets pour l'implémentation
-            }}
-        />
+        <>
+            <path
+                id={id}
+                d={`M${sourceX},${sourceY} L${targetX},${targetY}`}
+                style={{
+                    strokeWidth: 2,
+                    stroke: 'white',
+                    markerStart: markerStart,  // Applique le marqueur de départ pour la relation bidirectionnelle
+                    markerEnd: markerEnd,
+                    strokeDasharray: data?.relationType === 'implementation' ? '5,5' : '0', // Ligne en tirets pour l'implémentation
+                }}
+            />
+
+            {/* Cardinalité côté source */}
+            <text
+                x={sourceX}
+                y={sourceY}
+                fill="red"
+                fontSize={10}
+                textAnchor="middle"
+            >
+                {sourceCardinality}
+            </text>
+            {/* Cardinalité côté cible */}
+            <text
+                x={targetX + 15}
+                y={targetY + 2}
+                fill="red"
+                fontSize={15}
+                textAnchor="middle"
+            >
+                {targetCardinality}
+            </text>
+
+        </>
     );
 };
 

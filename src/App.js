@@ -1,6 +1,6 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Navbar from './components/Navbar';
+import Navbar from './components/Navbar.js';
 import React, { useState } from 'react';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import Diagram from "./components/gestionDiagram/Diagram";
