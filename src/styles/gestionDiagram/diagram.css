@@ -11,9 +11,13 @@
 }
 
 .class-name-wrapper{
-   text-align: center;
+    text-align: center;
     border-radius: 8px 8px 0 0;
     background-color: #3d5787;
+}
+.class-name-wrapper p{
+    font-weight: bold;
+    color: #eeeeee;
 }
 input{
     font-weight: bold;

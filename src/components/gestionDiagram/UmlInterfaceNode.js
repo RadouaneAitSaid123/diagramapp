@@ -1,5 +1,7 @@
 import PropTypes from "prop-types";
-import {Handle, Position} from "@xyflow/react";
+import {Handle, NodeToolbar, Position} from "@xyflow/react";
+import {useState} from "react";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 
 UmlInterfaceNode.propTypes = {
@@ -11,9 +13,53 @@ UmlInterfaceNode.propTypes = {
     }).isRequired,
 };
 function UmlInterfaceNode(props){
+    const [isVisible, setIsVisible]=useState(false);
+    const [attDIsVisible, setAttDIsVisible]=useState(false);
+    const [selectedIndex, setSelectedIndex] = useState(null);
+    const [selectedType, setSelectedType] = useState(null);
+
+    function handleDoubleClick(){
+        setIsVisible(!isVisible);
+    }
+
+
+
+
+    function handleDeleteSelected() {
+        if (selectedIndex !== null && selectedType) {
+            if (selectedType === "attribute") {
+                const updatedAttributes = props.data.attributes.filter((_, index) => index !== selectedIndex);
+                props.data.onChange({ attributes: updatedAttributes });
+            } else if (selectedType === "method") {
+                const updatedMethods = props.data.methods.filter((_, index) => index !== selectedIndex);
+                props.data.onChange({ methods: updatedMethods });
+            }
+            setSelectedIndex(null);
+            setSelectedType(null);
+        }
+    }
+
+    function addAttribut(){
+        const newAttribute = { etat: "+", attNom: "newAttr", type: "type" };
+        const updatedAttributes = [...props.data.attributes, newAttribute];
+        props.data.onChange({ attributes: updatedAttributes });
+    }
+
+    function addMethod(){
+        const newMethod = { etat: "+", typeRetour: "type", metNom: "method()" };
+        const updatedMethods = [...props.data.methods, newMethod];
+        props.data.onChange({ methods: updatedMethods });
+    }
+
+
+
 
     const attributsInterface=props.data.attributes.map((attribut,index)=>(
-        <div key={attribut.id} className="divStyle">
+        <div key={attribut.id} className="divStyle" onClick={() => {
+            setSelectedIndex(index);
+            setSelectedType("attribute");
+            setAttDIsVisible(!attDIsVisible);
+        }}>
             <input id="AttEtat" value={attribut.etat} onChange={(e)=>{
                 const updatedAttributes = [...props.data.attributes];
                 updatedAttributes[index].etat = e.target.value;
@@ -33,7 +79,11 @@ function UmlInterfaceNode(props){
     ));
 
     const methodsInterface=props.data.methods.map((methode,index)=>(
-        <div key={methode.id} className="divStyle">
+        <div key={methode.id} className="divStyle" onClick={() => {
+            setSelectedIndex(index);
+            setSelectedType("method");
+            setAttDIsVisible(!attDIsVisible);
+        }}>
             <input id="metEtat" value={methode.etat} onChange={(e)=>{
                 const updatedMethode=[...props.data.methods];
                 updatedMethode[index].etat=e.target.value;
@@ -53,9 +103,9 @@ function UmlInterfaceNode(props){
     ));
 
     return (
-        <div className="class-wrapper">
+        <div className="class-wrapper" onDoubleClick={handleDoubleClick}>
             <div className="class-name-wrapper">
-                <p>interface</p>
+                <p>&lt;&lt; Interface &gt;&gt;</p>
                 <input value={props.data.className} onChange={(e) => {
                 props.data.onChange({className: e.target.value})
             }}/>
@@ -63,6 +113,17 @@ function UmlInterfaceNode(props){
             {attributsInterface}
             <div className="lineStyle"></div>
             {methodsInterface}
+            <NodeToolbar position={Position.Left} isVisible={isVisible}>
+                <button onClick={addAttribut}>
+                    <FontAwesomeIcon icon="fa-solid fa-plus" />
+                </button>
+                <button onClick={addMethod}>
+                    <FontAwesomeIcon icon="fa-solid fa-grip-lines" />
+                </button>
+            </NodeToolbar>
+            <NodeToolbar position={Position.Right} isVisible={attDIsVisible}>
+                <button onClick={handleDeleteSelected}><FontAwesomeIcon icon="fa-solid fa-trash" /></button>
+            </NodeToolbar>
             <Handle type="target" position={Position.Top}/>
             <Handle type="source" position={Position.Bottom}/>
         </div>
