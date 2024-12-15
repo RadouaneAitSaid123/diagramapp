@@ -49,7 +49,7 @@ const getId = () => `dndnode_${id++}`;
 
 const Diagram = () => {
     const reactFlowWrapper = useRef(null);
-    const [nodes, setNodes, onNodesChange] = useNodesState([]);
+    const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
     const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
     const { screenToFlowPosition } = useReactFlow();
     const [type] = useDnD();
@@ -59,40 +59,40 @@ const Diagram = () => {
         event.dataTransfer.dropEffect = 'move';
     }, []);
     const onDrop = useCallback((event) => {
-            event.preventDefault();
-            if (!type) {return;}
-            const position = screenToFlowPosition({
-                x: event.clientX,
-                y: event.clientY,
-            });
-            const newNode = {
-                id: getId(),
-                type,
-                position,
-                data: {
-                    className: 'Nom',
-                    attributes: [
-                        {
-                            id:0,
-                            etat:'+',
-                            attNom:'nomAttribut',
-                            type:'type'
-                        }
-                    ],
+        event.preventDefault();
+        if (!type) {return;}
+        const position = screenToFlowPosition({
+            x: event.clientX,
+            y: event.clientY,
+        });
+        const newNode = {
+            id: getId(),
+            type,
+            position,
+            data: {
+                className: 'Nom',
+                attributes: [
+                    {
+                        id:0,
+                        etat:'+',
+                        attNom:'nomAttribut',
+                        type:'type'
+                    }
+                ],
 
-                    methods: [
-                        {
-                            id:0,
-                            etat:'+',
-                            typeRetour:'type',
-                            metNom:'methode()'
-                        }
-                    ],
-                },
-            };
+                methods: [
+                    {
+                        id:0,
+                        etat:'+',
+                        typeRetour:'type',
+                        metNom:'methode()'
+                    }
+                ],
+            },
+        };
 
-            setNodes((nds) => nds.concat(newNode));
-        }, [screenToFlowPosition, type],);
+        setNodes((nds) => nds.concat(newNode));
+    }, [screenToFlowPosition, type],);
 
 
     const updateNodeData = (id, updatedData) => {

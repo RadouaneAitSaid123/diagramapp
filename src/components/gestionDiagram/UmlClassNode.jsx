@@ -1,10 +1,6 @@
 import {Handle, NodeToolbar, Position} from "@xyflow/react";
 import PropTypes from "prop-types";
 import {useState} from "react";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import { faGear,faPlus  } from '@fortawesome/free-solid-svg-icons';
-
-
 
 
 
@@ -18,96 +14,67 @@ UmlClassNode.propTypes = {
 };
 
 function UmlClassNode(props){
-    const [isVisible, setIsVisible]=useState(false);
-    const [attDIsVisible, setAttDIsVisible]=useState(false);
-    const [selectedIndex, setSelectedIndex] = useState(null);
-    const [selectedType, setSelectedType] = useState(null);
-
-    function handleDoubleClick(){
-        setIsVisible(!isVisible);
+    const divStyle={
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: "#282828",
+        padding: "5px, 10px",
+        color: "white",
+        cursor:"pointer",
     }
-
-
-
-
-    function handleDeleteSelected() {
-        if (selectedIndex !== null && selectedType) {
-            if (selectedType === "attribute") {
-                const updatedAttributes = props.data.attributes.filter((_, index) => index !== selectedIndex);
-                props.data.onChange({ attributes: updatedAttributes });
-            } else if (selectedType === "method") {
-                const updatedMethods = props.data.methods.filter((_, index) => index !== selectedIndex);
-                props.data.onChange({ methods: updatedMethods });
-            }
-            setSelectedIndex(null);
-            setSelectedType(null);
-        }
+    const lineStyle={
+        height: "1px",
+        backgroundColor: "white",
+        margin: "10px 0",
     }
-
-    function addAttribut(){
-        const newAttribute = { etat: "+", attNom: "newAttr", type: "type" };
-        const updatedAttributes = [...props.data.attributes, newAttribute];
-        props.data.onChange({ attributes: updatedAttributes });
+    const buttonStyle={
+        border:'none',
+        animation: 'fadeIn 0.5s ease-in-out',
+        borderRadius: '8px',
+        margin: '2px',
+        color: 'white',
+        fontWeight:'bold',
+        backgroundColor: "#3d5787",
     }
-
-    function addMethod(){
-        const newMethod = { etat: "+", typeRetour: "type", metNom: "method()" };
-        const updatedMethods = [...props.data.methods, newMethod];
-        props.data.onChange({ methods: updatedMethods });
-    }
-
-
-
-
 
 
     const attributsDeClasse=props.data.attributes.map((attribut,index)=>(
-
-            <div  key={attribut.id}  className="divStyle" onClick={() => {
-                setSelectedIndex(index);
-                setSelectedType("attribute");
-                setAttDIsVisible(!attDIsVisible);
-            }}>
-                <input id="AttEtat" value={attribut.etat} onChange={(e) => {
-                    const updatedAttributes = [...props.data.attributes];
-                    updatedAttributes[index].etat = e.target.value;
-                    props.data.onChange({attributes: updatedAttributes});
-                }}/>
-                <input id="attNom" value={attribut.attNom} onChange={(e) => {
-                    const updatedAttributes = [...props.data.attributes];
-                    updatedAttributes[index].attNom = e.target.value;
-                    props.data.onChange({attributes: updatedAttributes});
-                }}/>
-                <input id="attType" value={attribut.type} onChange={(e) => {
-                    const updatedAttributes = [...props.data.attributes];
-                    updatedAttributes[index].type = e.target.value;
-                    props.data.onChange({attributes: updatedAttributes});
-                }}/>
-            </div>
-
-
+        <div key={attribut.id} style={divStyle}>
+            <input id="AttEtat" value={attribut.etat} onChange={(e)=>{
+                const updatedAttributes = [...props.data.attributes];
+                updatedAttributes[index].etat = e.target.value;
+                props.data.onChange({attributes: updatedAttributes});
+            }}/>
+            <input id="attNom" value={attribut.attNom} onChange={(e)=>{
+                const updatedAttributes = [...props.data.attributes];
+                updatedAttributes[index].attNom = e.target.value;
+                props.data.onChange({attributes: updatedAttributes});
+            }}/>
+            <input id="attType" value={attribut.type} onChange={(e)=>{
+                const updatedAttributes = [...props.data.attributes];
+                updatedAttributes[index].type = e.target.value;
+                props.data.onChange({attributes: updatedAttributes});
+            }}/>
+        </div>
     ));
 
-    const methodsDeClasse = props.data.methods.map((methode, index) => (
-        <div key={methode.id} className="divStyle"  onClick={() => {
-            setSelectedIndex(index);
-            setSelectedType("method");
-            setAttDIsVisible(!attDIsVisible);
-        }} >
-            <input id="metEtat" value={methode.etat} onChange={(e) => {
-                const updatedMethode = [...props.data.methods];
-                updatedMethode[index].etat = e.target.value;
-                props.data.onChange({methods: updatedMethode});
+    const methodsDeClasse=props.data.methods.map((methode,index)=>(
+        <div key={methode.id} style={divStyle}>
+            <input id="metEtat" value={methode.etat} onChange={(e)=>{
+                const updatedMethode=[...props.data.methods];
+                updatedMethode[index].etat=e.target.value;
+                props.data.onChange({methods:updatedMethode});
             }}/>
-            <input id="metType" value={methode.typeRetour} onChange={(e) => {
-                const updatedMethode = [...props.data.methods];
-                updatedMethode[index].typeRetour = e.target.value;
-                props.data.onChange({methods: updatedMethode});
+            <input id="metType" value={methode.typeRetour}  onChange={(e)=>{
+                const updatedMethode=[...props.data.methods];
+                updatedMethode[index].typeRetour=e.target.value;
+                props.data.onChange({methods:updatedMethode});
             }}/>
-            <input id="metNom" value={methode.metNom} onChange={(e) => {
-                const updatedMethode = [...props.data.methods];
-                updatedMethode[index].metNom = e.target.value;
-                props.data.onChange({methods: updatedMethode});
+            <input id="metNom" value={methode.metNom}  onChange={(e)=>{
+                const updatedMethode=[...props.data.methods];
+                updatedMethode[index].metNom=e.target.value;
+                props.data.onChange({methods:updatedMethode});
             }}/>
         </div>
     ));
@@ -117,24 +84,14 @@ function UmlClassNode(props){
 
 
     return (
-        <div className="class-wrapper" onDoubleClick={handleDoubleClick}>
+        <div className="class-wrapper">
             <div className="class-name-wrapper">
+
                 <input value={props.data.className} onChange={(e)=>{props.data.onChange({className: e.target.value})}}/>
             </div>
             {attributsDeClasse}
-            <div className="lineStyle"></div>
+            <div style={lineStyle}></div>
             {methodsDeClasse}
-            <NodeToolbar position={Position.Left} isVisible={isVisible}>
-                <button onClick={addAttribut}>
-                    <FontAwesomeIcon icon={faPlus} />
-                </button>
-                <button onClick={addMethod} style={{justifyContent:'center',alignItems:"center",display:"flex"}}>
-                    <FontAwesomeIcon icon={faGear} />
-                </button>
-            </NodeToolbar>
-            <NodeToolbar position={Position.Right} isVisible={attDIsVisible}>
-                <button onClick={handleDeleteSelected}>-</button>
-            </NodeToolbar>
             <Handle type="target" position={Position.Top}/>
             <Handle type="source" position={Position.Bottom}/>
         </div>
