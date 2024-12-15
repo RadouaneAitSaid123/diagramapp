@@ -34,9 +34,10 @@ const CustomEdge = ({
             markerEnd = 'url(#diamond-filled)';
             break;
         case 'implementation':
-            markerEnd = 'url(#dashed-line)';
+            markerStart = 'url(#dashed-line)';
+            markerEnd = 'url(#arrowhead)';
             break;
-        case 'unidirectionnelle': // Héritage
+        case 'unidirectionnelle': // Navigabilité unidirectionnelle
             markerEnd = 'url(#unidirectional-arrowhead)';
             break;
         case 'bidirectional': // Navigabilité bidirectionnelle
