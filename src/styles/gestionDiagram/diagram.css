@@ -71,6 +71,18 @@ input{
     margin: 10px 0;
 }
 
+.context-menu {
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    padding: 5px;
+    background-color: white;
+    font-size: 14px;
+}
+.context-menu ul li:hover {
+    background-color: #f0f0f0;
+}
+
+
 
 
 

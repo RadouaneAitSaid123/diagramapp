@@ -9,7 +9,7 @@ import { faMinus } from '@fortawesome/free-solid-svg-icons';
 
 export default Sidebar;
 
-function Sidebar() {
+function Sidebar({ diagramName }) {
     const [type, setType] = useDnD();
 
     const onDragStart = (event, nodeType) => {
@@ -18,15 +18,23 @@ function Sidebar() {
     };
     return (
         <aside>
+            {/* Affiche le nom du diagramme */}
+            <div className="list-group">
+                <a href="#" className="list-group-item list-group-item-action titre" aria-current="true">
+                    <h6>Diagrams</h6>
+                </a>
+                <a href="#" className="list-group-item list-group-item-action dndnode" onDragStart={(event) => onDragStart(event, 'umlClass')}
+                    draggable>{diagramName || "Unnamed"}</a>
+            </div>
             <div className="list-group">
                 <a href="#" className="list-group-item list-group-item-action titre" aria-current="true">
                     <h6>Shape your diagram</h6>
                 </a>
                 <a href="#" className="list-group-item list-group-item-action dndnode" onDragStart={(event) => onDragStart(event, 'umlClass')}
                     draggable> Classe</a>
-                     <a href="#" className="list-group-item list-group-item-action dndnode" onDragStart={(event) => onDragStart(event, 'umlInterface')}
+                <a href="#" className="list-group-item list-group-item-action dndnode" onDragStart={(event) => onDragStart(event, 'umlInterface')}
                     draggable> Interface</a>
-                     <a href="#" className="list-group-item list-group-item-action dndnode" onDragStart={(event) => onDragStart(event, 'umlAbstractClass')}
+                <a href="#" className="list-group-item list-group-item-action dndnode" onDragStart={(event) => onDragStart(event, 'umlAbstractClass')}
                     draggable> Classe abstract</a>
             </div>
 
@@ -43,7 +51,7 @@ function Sidebar() {
 
             <div className="list-group">
                 <a href="#" className="list-group-item list-group-item-action titre">
-                   <h6>Navigabilité</h6>
+                    <h6>Navigabilité</h6>
                 </a>
                 <a href="#" className="list-group-item list-group-item-action" onClick={() => setType('unidirectionnelle')}>Unidirectionnelle</a>
                 <a href="#" className="list-group-item list-group-item-action" onClick={() => setType('bidirectional')}>Bidirectionnelle </a>

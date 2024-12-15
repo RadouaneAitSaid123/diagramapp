@@ -70,12 +70,13 @@ const CustomEdge = ({
                 }}
             />
 
+
             {/* Cardinalité côté source */}
             <text
-                x={sourceX}
-                y={sourceY}
-                fill="red"
-                fontSize={10}
+                x={sourceX + 10}
+                y={sourceY + 8}
+                fill="yellow"
+                fontSize={15}
                 textAnchor="middle"
             >
                 {sourceCardinality}
@@ -84,7 +85,7 @@ const CustomEdge = ({
             <text
                 x={targetX + 15}
                 y={targetY + 2}
-                fill="red"
+                fill="yellow"
                 fontSize={15}
                 textAnchor="middle"
             >

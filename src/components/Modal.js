@@ -1,6 +1,8 @@
 import '../styles/modal.css';
 export default function Modal({ isOpen, closeModal, onCreateDiagram }) {
+
     if (!isOpen) return null;
+
     return (
         <div className="modal show" style={{ display: 'block' }} tabindex="-1" role="dialog">
             <div className="modal-dialog" role="document">
@@ -13,7 +15,7 @@ export default function Modal({ isOpen, closeModal, onCreateDiagram }) {
                         <form>
                             <div className="mb-3">
                                 <label for="exampleInputPassword1" className="form-label"><h5>Diagram name</h5></label>
-                                <input type="text" className="form-control" id="exampleInputPassword1"></input>
+                                <input type="text" className="form-control" id="diagramNameInput"></input>
                             </div>
                         </form>
                     </div>
@@ -21,10 +23,12 @@ export default function Modal({ isOpen, closeModal, onCreateDiagram }) {
                         <button type="button" className="btn btn-secondary" onClick={closeModal}>
                             Close
                         </button>
-                        <button type="button" className="btn btn-primary" onClick={() => {
-                            closeModal();
-                            onCreateDiagram()
-                        }}>Create diagramm</button>
+                        <button type="button" className="btn btn-primary" onClick={
+                            () => {
+                                closeModal();
+                                onCreateDiagram()
+                            }}
+                        >Create diagramm</button>
                     </div>
                 </div>
             </div>

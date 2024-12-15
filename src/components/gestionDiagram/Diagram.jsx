@@ -1,4 +1,4 @@
-import React, { useCallback, useRef } from "react";
+import React, { useCallback, useRef, useState } from "react";
 import CustomEdge from "./CustomEdge";
 import {
     addEdge,
@@ -12,11 +12,10 @@ import '../../styles/gestionDiagram/diagram.css'
 import UmlClassNode from "./UmlClassNode";
 import Sidebar from "./Sidebar";
 import DnDProvider, { useDnD } from "./DnDProvider";
-import UmlInterfaceNode from "./UmlInterfaceNode";
-import UmlAbstractNode from "./UmlAbstractNode";
 
-const nodeTypes={umlClass: UmlClassNode, umlInterface: UmlClassNode, umlAbstractClass: UmlClassNode};
-const initialNodes=[
+const nodeTypes = { umlClass: UmlClassNode, umlInterface: UmlClassNode, umlAbstractClass: UmlClassNode };
+
+const initialNodes = [
     {
         id: '1',
         type: 'umlClass',
@@ -82,7 +81,6 @@ const Diagram = () => {
         }
     };
 
-
     const onConnect = useCallback((connection) => {
         setEdges((edges) =>
             addEdge(
@@ -134,6 +132,8 @@ const Diagram = () => {
 
         setNodes((nds) => nds.concat(newNode));
     }, [screenToFlowPosition, type],);
+
+
     const updateNodeData = (id, updatedData) => {
         setNodes((nds) =>
             nds.map((node) =>
@@ -141,12 +141,17 @@ const Diagram = () => {
             )
         );
     };
+
+
     const edgeTypes = {
         custom: CustomEdge,
     };
+
+
     const nodesWithHandlers = nodes.map((node) => ({
         ...node, data: { ...node.data, onChange: (newData) => updateNodeData(node.id, newData), },
     }));
+
 
     return (
         <div className="dndflow">
@@ -169,7 +174,9 @@ const Diagram = () => {
                     <MiniMap />
                 </ReactFlow>
             </div>
+
             <Sidebar />
+
         </div>
     );
 };

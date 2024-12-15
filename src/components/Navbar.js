@@ -9,13 +9,12 @@ import { faPhp } from '@fortawesome/free-brands-svg-icons';
 import { faPython } from '@fortawesome/free-brands-svg-icons';
 
 
-
-
-
 export default function Navbar({ showGenerateButton, onCreateDiagram }) {
+
     const [showModal, setShowModal] = useState(false);
     const openModal = () => setShowModal(true);
     const closeModal = () => setShowModal(false);
+
     return (
         <>
             <nav className="navbar fixed-top navbar-expand-lg">
@@ -48,7 +47,7 @@ export default function Navbar({ showGenerateButton, onCreateDiagram }) {
                 closeModal={closeModal}
                 onCreateDiagram={() => {
                     closeModal();
-                    onCreateDiagram(); // Notifie le parent
+                    onCreateDiagram(); // Envoie le nom du diagramme au parent
                 }}
             />
         </>
