@@ -5,9 +5,6 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import { faGear,faPlus  } from '@fortawesome/free-solid-svg-icons';
 
 
-
-
-
 UmlClassNode.propTypes = {
     data: PropTypes.shape({
         className: PropTypes.string.isRequired,

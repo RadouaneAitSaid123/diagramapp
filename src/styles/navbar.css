@@ -2,13 +2,94 @@
   position: sticky;
   top: 0;
   width: 100%;
+  z-index: 1000;
 }
 nav {
-    background-color: #e3f2fd;
-    height: 4em;
-  }
-  .navbar-brand {
-    font-family: 'Lobster', cursive; 
-    font-size: 1.5rem;
-    color: rgb(6, 87, 128)
-  }
+  background: rgba(255, 255, 255, 0.8); /* Fond clair semi-transparent */
+  backdrop-filter: blur(10px); /* Effet de flou en arrière-plan */
+  height: 4em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2em;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Ombre douce pour profondeur */
+}
+.navbar-brand {
+  font-family: 'Helvetica Neue', sans-serif;
+  font-size: 2rem;
+  color: #333; /* Gris foncé pour plus de sobriété */
+  letter-spacing: 2px;
+  transition: color 0.3s ease;
+}
+.navbar-brand:hover {
+  color: #671947; /* Bleu clair au survol */
+}
+
+/* Menu */
+.navbar-nav {
+  display: flex;
+  gap: 20px;
+}
+
+.nav-item {
+  list-style: none;
+}
+
+.nav-link {
+  color: #333; /* Gris foncé */
+  font-size: 1.1rem;
+  font-weight: 400;
+  text-decoration: none;
+}
+
+.uml-title {
+  color: #671947;
+  font-family: 'Helvetica Neue', sans-serif;
+  font-size: 3rem;
+  text-align: center;
+  text-transform: uppercase;  /* Texte en majuscules */
+  margin-bottom: 20px;
+}
+/* Style du bouton New Diagram */
+.new-diagram-btn {
+  background-color: #3f4467; /* Couleur de fond  */
+  color: white;
+  border: none;
+  padding: 15px 35px; /* Taille du bouton */
+  font-size: 1.2rem;
+  font-weight: 600; /* Poids de police plus important pour la lisibilité */
+  cursor: pointer;
+  border-radius: 50px; /* Bord arrondi */
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1); /* Ombre douce */
+  transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Effet au survol */
+.new-diagram-btn:hover {
+  background-color: #671947; /* Couleur plus foncée au survol */
+  transform: scale(1.1); /* Agrandir le bouton légèrement */
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2); /* Ombre plus marquée */
+}
+
+/* Effet lorsque le bouton est cliqué */
+.new-diagram-btn:active {
+  transform: scale(1); /* Réduit la taille après le clic */
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15); /* Ombre légère après le clic */
+}
+
+/* Icône */
+.new-diagram-btn .icon {
+  margin-right: 10px; /* Espacement entre l'icône et le texte */
+  font-size: 1.4rem; /* Taille de l'icône */
+}
+
+/* Effet sur l'icône au survol */
+.new-diagram-btn:hover .icon {
+  transform: rotate(25deg); /* Rotation légère de l'icône au survol */
+}
+
+/* Style pour un texte plus moderne */
+.new-diagram-btn span {
+  font-family: 'Roboto', sans-serif; /* Choisir une police moderne et élégante */
+  letter-spacing: 0.5px;
+}
