@@ -5,18 +5,15 @@ aside{
     background: #fcfcfc;
     margin-top: 4em;
 }
-.description{
-    margin-bottom: 10px;
-    color: #1a192b;
+
+.list-group{
+    margin-top: 10px;
 }
-.dndnode{
-    height: 20px;
-    padding: 4px;
-    border: 1px solid #1a192b;
-    border-radius: 2px;
-    margin-bottom: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: grab;
+
+.titre{
+    color: black;
+    background-color: rgb(39, 153, 153);
+}
+h6{
+    font-weight: bold;
 }

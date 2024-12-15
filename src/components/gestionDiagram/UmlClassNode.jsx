@@ -24,9 +24,6 @@ function UmlClassNode(props){
         setIsVisible(!isVisible);
     }
 
-
-
-
     function handleDeleteSelected() {
         if (selectedIndex !== null && selectedType) {
             if (selectedType === "attribute") {
