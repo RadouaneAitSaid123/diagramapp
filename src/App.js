@@ -15,7 +15,7 @@ function App() {
   return (
     <div className="main">
       <Navbar
-        showGenerateButton={true}
+        showGenerateButton={showDiagram}
         openModal={() => setShowDiagram(false)} // Optionnel si Navbar gère autre chose
         onCreateDiagram={() => setShowDiagram(true)}
       />

@@ -69,7 +69,7 @@ const Diagram = () => {
     };
 
     // Exemple d'interaction pour changer la cardinalité
-    const onEdgeClick = (event, edge) => {
+    const onEdgeDoubleClick = (event, edge) => {
         const sourceCardinality = prompt("Enter source cardinality:", edge.data.sourceCardinality || "");
         const targetCardinality = prompt("Enter target cardinality:", edge.data.targetCardinality || "");
         // Ne mettez à jour que si l'utilisateur a saisi une valeur
@@ -166,7 +166,7 @@ const Diagram = () => {
                     onDragOver={onDragOver}
                     nodeTypes={nodeTypes}
                     edgeTypes={edgeTypes}
-                    onEdgeClick={onEdgeClick}
+                    onEdgeDoubleClick={onEdgeDoubleClick}
                     fitView
                 >
                     <Controls />
