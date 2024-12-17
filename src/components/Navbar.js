@@ -8,12 +8,14 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { faJava } from '@fortawesome/free-brands-svg-icons';
 import { faPhp } from '@fortawesome/free-brands-svg-icons';
 import { faPython } from '@fortawesome/free-brands-svg-icons';
+import { generateJavaFiles } from '../components/generationCode/javaGenerator';
 
 
 
 
 
-export default function Navbar({ showGenerateButton, onCreateDiagram }) {
+
+export default function Navbar({ showGenerateButton, onCreateDiagram, diagramData }) {
     const [modalType, setModalType] = useState(null); // Type de modal à afficher
     const [codeContent, setCodeContent] = useState(""); // Contenu du code généré
 
@@ -55,7 +57,7 @@ export default function Navbar({ showGenerateButton, onCreateDiagram }) {
                                     <a
                                         className="dropdown-item"
                                         href="#"
-                                        onClick={() => openModal('affichageCode', codeExamples.java)}
+                                        onClick={() => generateJavaFiles(diagramData.nodes, diagramData.edges)}
                                     >
                                         <FontAwesomeIcon icon={faJava} /> Java
                                     </a>
