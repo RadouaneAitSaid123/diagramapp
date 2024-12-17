@@ -14,7 +14,7 @@ export default function Navbar({ showGenerateButton, onCreateDiagram }) {
     const [showModal, setShowModal] = useState(false);
     const openModal = () => setShowModal(true);
     const closeModal = () => setShowModal(false);
-
+    
     return (
         <>
             <nav className="navbar fixed-top navbar-expand-lg">

@@ -11,7 +11,7 @@ function SVGDefs() {
                     refY="3.5"
                     orient="auto"
                 >
-                    <polygon points="0 0, 10 3.5, 0 7" fill="white" />
+                    <polygon points="0 0, 10 3.5, 0 7" fill="black" />
                 </marker>
 
                 {/* Agrégation faible (losange vide) */}
@@ -23,7 +23,7 @@ function SVGDefs() {
                     refY="5"
                     orient="auto"
                 >
-                    <polygon points="0,5 5,0 10,5 5,10" fill="none" stroke="white" strokeWidth="1" />
+                    <polygon points="0,5 5,0 10,5 5,10" fill="none" stroke="black" strokeWidth="1" />
                 </marker>
 
                 {/* Agrégation forte (losange plein) */}
@@ -35,7 +35,7 @@ function SVGDefs() {
                     refY="5"
                     orient="auto"
                 >
-                    <polygon points="0,5 5,0 10,5 5,10" fill="white" />
+                    <polygon points="0,5 5,0 10,5 5,10" fill="black" />
                 </marker>
 
                 {/* Flèche unidirectionnelle (flèche pleine) */}
@@ -47,7 +47,7 @@ function SVGDefs() {
                     refY="4"
                     orient="auto"
                 >
-                    <polyline points="0,0 8,4 0,8" fill="none" stroke="white" strokeWidth="1.5" />
+                    <polyline points="0,0 8,4 0,8" fill="none" stroke="black" strokeWidth="1.5" />
                 </marker>
 
                 {/* Flèche bidirectionnelle (flèches aux deux extrémités) */}
@@ -59,7 +59,7 @@ function SVGDefs() {
                     refY="4"
                     orient="auto"
                 >
-                    <polyline points="8,0 0,4 8,8" fill="none" stroke="white" strokeWidth="1.5" />
+                    <polyline points="8,0 0,4 8,8" fill="none" stroke="black" strokeWidth="1.5" />
                 </marker>
                 <marker
                     id="bidirectional-arrow-end"
@@ -69,7 +69,7 @@ function SVGDefs() {
                     refY="4"
                     orient="auto"
                 >
-                    <polyline points="0,0 8,4 0,8" fill="none" stroke="white" strokeWidth="1.5" />
+                    <polyline points="0,0 8,4 0,8" fill="none" stroke="black" strokeWidth="1.5" />
                 </marker>
             </defs>
         </svg>

@@ -24,10 +24,10 @@ export default function Modal({ isOpen, closeModal, onCreateDiagram }) {
                             Close
                         </button>
                         <button type="button" className="btn btn-primary" onClick={
-                            () => {
-                                closeModal();
+                               () => {
+                                  closeModal();
                                 onCreateDiagram()
-                            }}
+                              }}
                         >Create diagramm</button>
                     </div>
                 </div>

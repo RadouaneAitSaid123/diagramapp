@@ -186,8 +186,8 @@ const Diagram = () => {
 
 export default () => (
     <ReactFlowProvider>
-        <DnDProvider>
-            <Diagram />
-        </DnDProvider>
+            <DnDProvider>
+                <Diagram />
+            </DnDProvider>
     </ReactFlowProvider>
 );
