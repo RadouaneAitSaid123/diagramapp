@@ -1,7 +1,7 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from './components/Navbar.js';
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import Diagram from "./components/gestionDiagram/Diagram";
 import SVGDefs from './components/gestionDiagram/SVGDefs';
@@ -9,12 +9,14 @@ import SVGDefs from './components/gestionDiagram/SVGDefs';
 
 function App() {
   const [showDiagram, setShowDiagram] = useState(false);
+  const diagramRef = useRef(null);
   return (
     <div className="main">
       <Navbar
         showGenerateButton={showDiagram}
         openModal={() => setShowDiagram(false)} // Optionnel si Navbar gère autre chose
         onCreateDiagram={() => setShowDiagram(true)}
+        onGenerateJSON={() => diagramRef.current?.generateJSON()}
       />
 
 
@@ -32,9 +34,8 @@ function App() {
       )}
       {showDiagram &&
           <div className="dndflow">
-              <h2 className="uml-title">UML Diagram</h2>
               <SVGDefs/>
-              <Diagram/>
+              <Diagram ref={diagramRef}/>
 
           </div>
 

@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useState } from "react";
+import React, { useCallback, useRef, useState,forwardRef,  useImperativeHandle } from "react";
 import CustomEdge from "./CustomEdge";
 import {
     addEdge,
@@ -53,20 +53,34 @@ const initialEdges = [
 let id = 0;
 const getId = () => `dndnode_${id++}`;
 
-const Diagram = () => {
+const Diagram = forwardRef((props, ref) => {
     const reactFlowWrapper = useRef(null);
     const [nodes, setNodes, onNodesChange] = useNodesState([]);
     const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
     const { screenToFlowPosition } = useReactFlow();
     const [type] = useDnD();
 
-    const updateEdgeData = (id, updatedData) => {
+    useImperativeHandle(ref, () => ({
+        generateJSON: () => generateJSON()
+    }));
+
+    const updateEdgeData = (edgeId, newData) => {
         setEdges((eds) =>
-            eds.map((edge) =>
-                edge.id === id ? { ...edge, data: { ...edge.data, ...updatedData } } : edge
-            )
+            eds.map((edge) => {
+                if (edge.id === edgeId) {
+                    return {
+                        ...edge,
+                        data: {
+                            ...edge.data,
+                            ...newData,
+                        },
+                    };
+                }
+                return edge;
+            })
         );
     };
+
 
     // Exemple d'interaction pour changer la cardinalité
     const onEdgeClick = (event, edge) => {
@@ -152,6 +166,36 @@ const Diagram = () => {
         ...node, data: { ...node.data, onChange: (newData) => updateNodeData(node.id, newData), },
     }));
 
+    const generateJSON = () => {
+        const diagramData = {
+            classes: nodes.map(node => ({
+                id: node.id,
+                type: node.type,
+                className: node.data.className,
+                attributes: node.data.attributes.map(attr => ({
+                    visibility: attr.etat,
+                    name: attr.attNom,
+                    type: attr.type
+                })),
+                methods: node.data.methods.map(method => ({
+                    visibility: method.etat,
+                    returnType: method.typeRetour,
+                    name: method.metNom
+                }))
+            })),
+            relationships: edges.map(edge => ({
+                id: edge.id,
+                sourceClass: edge.source,
+                targetClass: edge.target,
+                type: edge.data.relationType,
+                sourceCardinality: edge.data.sourceCardinality,
+                targetCardinality: edge.data.targetCardinality
+            }))
+        };
+        return diagramData;
+    };
+
+
 
     return (
         <div className="dndflow">
@@ -179,12 +223,14 @@ const Diagram = () => {
 
         </div>
     );
-};
+});
 
-export default () => (
+const DiagramWithProvider = forwardRef((props, ref) => (
     <ReactFlowProvider>
         <DnDProvider>
-            <Diagram />
+            <Diagram ref={ref} />
         </DnDProvider>
     </ReactFlowProvider>
-);
+));
+
+export default DiagramWithProvider;

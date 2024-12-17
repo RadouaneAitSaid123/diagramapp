@@ -80,17 +80,6 @@ button {
   border-radius: 30px;
   transition: transform 0.3s, background-color 0.3s;
 }
-button {
-  background-color: #4a90e2;
-  color: white;
-  border: none;
-  padding: 15px 30px;
-  font-size: 1.2rem;
-  cursor: pointer;
-  border-radius: 30px;
-  transition: transform 0.3s, background-color 0.3s;
-}
-
 button:hover {
   transform: scale(1.1);
   background-color: #6c61ca;
