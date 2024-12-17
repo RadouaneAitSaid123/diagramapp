@@ -63,7 +63,7 @@ const CustomEdge = ({
                 d={`M${sourceX},${sourceY} L${targetX},${targetY}`}
                 style={{
                     strokeWidth: 2,
-                    stroke: 'white',
+                    stroke: 'black',
                     markerStart: markerStart,  // Applique le marqueur de départ pour la relation bidirectionnelle
                     markerEnd: markerEnd,
                     strokeDasharray: data?.relationType === 'implementation' ? '5,5' : '0', // Ligne en tirets pour l'implémentation
@@ -73,9 +73,9 @@ const CustomEdge = ({
 
             {/* Cardinalité côté source */}
             <text
-                x={sourceX + 10}
-                y={sourceY + 8}
-                fill="yellow"
+                x={sourceX -20}
+                y={sourceY + 15}
+                fill="black"
                 fontSize={15}
                 textAnchor="middle"
             >
@@ -85,7 +85,7 @@ const CustomEdge = ({
             <text
                 x={targetX + 15}
                 y={targetY + 2}
-                fill="yellow"
+                fill="black"
                 fontSize={15}
                 textAnchor="middle"
             >

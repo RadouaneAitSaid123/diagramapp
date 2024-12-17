@@ -16,8 +16,6 @@ import { DiagramContext } from '../../App';
 
 const nodeTypes = { umlClass: UmlClassNode, umlInterface: UmlClassNode, umlAbstractClass: UmlClassNode };
 
-
-
 const initialNodes = [
     {
         id: '1',
@@ -51,6 +49,7 @@ const initialEdges = [
     { id: 'e2-3', source: '2', target: '3', type: 'custom', data: { relationType: 'implementation', sourceCardinality: '0..1', targetCardinality: '1' } },
     { id: 'e3-4', source: '3', target: '4', type: 'custom', data: { relationType: 'aggregation', sourceCardinality: '1', targetCardinality: '0..*' } },
     { id: 'e4-5', source: '4', target: '5', type: 'custom', data: { relationType: 'composition', sourceCardinality: '1', targetCardinality: '1' } },
+    { id: 'e1', source: '1', sourceHandle: 'left-source', target: '2', targetHandle: 'right-target' },
 ];
 
 let id = 0;
@@ -161,9 +160,6 @@ const Diagram = () => {
     }));
 
 
-
-
-
     return (
         <div className="dndflow">
             <div className="diagram-container" ref={reactFlowWrapper}>
@@ -181,7 +177,7 @@ const Diagram = () => {
                     fitView
                 >
                     <Controls />
-                    <Background color="#222" variant={BackgroundVariant.Lines} />
+                    <Background color="#222" variant={BackgroundVariant.Dots} />
                     <MiniMap />
                 </ReactFlow>
             </div>

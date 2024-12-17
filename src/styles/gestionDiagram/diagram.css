@@ -1,10 +1,10 @@
 .diagram-container {
     height: 100vh;
     width: 100%;
-    background-color: #282828;
+    background-color: white;
 }
 .class-wrapper{
-   border-radius: 8px;
+    border-radius: 8px;
     min-width: 250px;
     background-color: #282828;
 
@@ -63,6 +63,7 @@ input{
     padding: 5px 10px;
     color: white;
     cursor:pointer;
+    border-radius: 8px;
 }
 
 .lineStyle{
@@ -80,6 +81,51 @@ input{
 }
 .context-menu ul li:hover {
     background-color: #f0f0f0;
+}
+
+.bouton {
+    background-color: #3d5787;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 6px 10px;
+    font-size: 7px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bouton:hover {
+    background-color: #192d53;
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+.bouton:active {
+    background-color: #192d53;
+    transform: scale(0.95);
+}
+
+.bouton:focus {
+    outline: 2px solid #80d4ff;
+    outline-offset: 2px;
+}
+
+.bouton svg {
+    width: 10px;
+    height: 10px;
+}
+
+
+
+.bouton-danger:hover {
+    background-color: #e53935;
+}
+
+.bouton-danger:active {
+    background-color: #d32f2f;
 }
 
 
