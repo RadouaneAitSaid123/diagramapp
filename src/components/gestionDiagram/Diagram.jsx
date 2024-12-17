@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useState,forwardRef,  useImperativeHandle } from "react";
+import React, { useCallback, useRef, useState,forwardRef,  useImperativeHandle, useContext, useEffect } from "react";
 import CustomEdge from "./CustomEdge";
 import {
     addEdge,
@@ -12,6 +12,7 @@ import '../../styles/gestionDiagram/diagram.css'
 import UmlClassNode from "./UmlClassNode";
 import Sidebar from "./Sidebar";
 import DnDProvider, { useDnD } from "./DnDProvider";
+import { DiagramContext } from '../../App';
 
 const nodeTypes = { umlClass: UmlClassNode, umlInterface: UmlClassNode, umlAbstractClass: UmlClassNode };
 
@@ -48,23 +49,28 @@ const initialEdges = [
     { id: 'e2-3', source: '2', target: '3', type: 'custom', data: { relationType: 'implementation', sourceCardinality: '0..1', targetCardinality: '1' } },
     { id: 'e3-4', source: '3', target: '4', type: 'custom', data: { relationType: 'aggregation', sourceCardinality: '1', targetCardinality: '0..*' } },
     { id: 'e4-5', source: '4', target: '5', type: 'custom', data: { relationType: 'composition', sourceCardinality: '1', targetCardinality: '1' } },
+    { id: 'e1', source: '1', sourceHandle: 'left-source', target: '2', targetHandle: 'right-target' },
 ];
 
 let id = 0;
 const getId = () => `dndnode_${id++}`;
 
 const Diagram = forwardRef((props, ref) => {
+    const { updateDiagramData } = useContext(DiagramContext);
     const reactFlowWrapper = useRef(null);
     const [nodes, setNodes, onNodesChange] = useNodesState([]);
     const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
     const { screenToFlowPosition } = useReactFlow();
     const [type] = useDnD();
 
+    useEffect(() => {
+        updateDiagramData(nodes, edges);
+    }, [nodes, edges, updateDiagramData]);
     useImperativeHandle(ref, () => ({
         generateJSON: () => generateJSON()
     }));
 
-    const updateEdgeData = (edgeId, newData) => {
+    const updateEdgeData = (edgeId, newData, id, updatedData) => {
         setEdges((eds) =>
             eds.map((edge) => {
                 if (edge.id === edgeId) {
@@ -80,7 +86,6 @@ const Diagram = forwardRef((props, ref) => {
             })
         );
     };
-
 
     // Exemple d'interaction pour changer la cardinalité
     const onEdgeClick = (event, edge) => {
@@ -172,25 +177,29 @@ const Diagram = forwardRef((props, ref) => {
                 id: node.id,
                 type: node.type,
                 className: node.data.className,
-                attributes: node.data.attributes.map(attr => ({
-                    visibility: attr.etat,
-                    name: attr.attNom,
-                    type: attr.type
-                })),
-                methods: node.data.methods.map(method => ({
-                    visibility: method.etat,
-                    returnType: method.typeRetour,
-                    name: method.metNom
-                }))
+                attributes: node.data.attributes ? node.data.attributes.map(attr => ({
+                    visibility: attr.etat || '+',
+                    name: attr.attNom || '',
+                    type: attr.type || ''
+                })) : [],
+                methods: node.data.methods ? node.data.methods.map(method => ({
+                    visibility: method.etat || '+',
+                    returnType: method.typeRetour || '',
+                    name: method.metNom || ''
+                })) : []
             })),
-            relationships: edges.map(edge => ({
-                id: edge.id,
-                sourceClass: edge.source,
-                targetClass: edge.target,
-                type: edge.data.relationType,
-                sourceCardinality: edge.data.sourceCardinality,
-                targetCardinality: edge.data.targetCardinality
-            }))
+            relationships: edges.map(edge => {
+                // Vérification de l'existence de edge.data
+                const data = edge.data || {};
+                return {
+                    id: edge.id,
+                    sourceClass: edge.source,
+                    targetClass: edge.target,
+                    type: data.relationType || 'association',
+                    sourceCardinality: data.sourceCardinality || '1',
+                    targetCardinality: data.targetCardinality || '1'
+                };
+            })
         };
         return diagramData;
     };
@@ -214,7 +223,7 @@ const Diagram = forwardRef((props, ref) => {
                     fitView
                 >
                     <Controls />
-                    <Background color="#222" variant={BackgroundVariant.Lines} />
+                    <Background color="#222" variant={BackgroundVariant.Dots} />
                     <MiniMap />
                 </ReactFlow>
             </div>

@@ -13,6 +13,8 @@ nav {
   align-items: center;
   padding: 0 2em;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Ombre douce pour profondeur */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);  /* Ajout pour la compatibilité Safari */
 }
 .navbar-brand {
   font-family: 'Helvetica Neue', sans-serif;

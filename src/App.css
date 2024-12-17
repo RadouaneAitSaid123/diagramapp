@@ -6,6 +6,8 @@ body {
   padding: 0;
   font-family: 'Roboto', sans-serif;
   background-color: #f4f4f9; /* Fond clair neutre */
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 
 }
 

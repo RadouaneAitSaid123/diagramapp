@@ -1,6 +1,12 @@
 import '../styles/modal.css';
 export default function Modal({ isOpen, closeModal, onCreateDiagram }) {
     if (!isOpen) return null;
+
+    const handleCreate = () => {
+        onCreateDiagram();  // Appelle la fonction pour créer le diagramme
+        closeModal();       // Ferme le modal
+    };
+    
     return (
         <div className="modal-overlay" onClick={closeModal}>
             <div className="modal-container" onClick={(e) => e.stopPropagation()}>
