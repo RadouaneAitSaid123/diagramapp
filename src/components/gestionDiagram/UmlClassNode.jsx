@@ -1,4 +1,4 @@
-import { Handle, NodeToolbar, Position } from "@xyflow/react";
+import {Handle, NodeToolbar, Position} from "@xyflow/react";
 import PropTypes from "prop-types";
 import { useRef, useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -54,13 +54,13 @@ function UmlClassNode(props) {
         }
     }
 
-    function addAttribut() {
+    function addAttribut(){
         const newAttribute = { etat: "+", attNom: "newAttr", type: "type" };
         const updatedAttributes = [...props.data.attributes, newAttribute];
         props.data.onChange({ attributes: updatedAttributes });
     }
 
-    function addMethod() {
+    function addMethod(){
         const newMethod = { etat: "+", typeRetour: "type", metNom: "method()" };
         const updatedMethods = [...props.data.methods, newMethod];
         props.data.onChange({ methods: updatedMethods });
@@ -145,6 +145,10 @@ function UmlClassNode(props) {
             />
         </div>
     ));
+
+
+
+
 
     return (
         <div className="class-wrapper" ref={wrapperRef} onDoubleClick={handleDoubleClick}>

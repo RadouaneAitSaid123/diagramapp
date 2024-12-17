@@ -1,4 +1,4 @@
-import React, { useCallback, useRef } from "react";
+import React, { useCallback, useRef, useState, useContext, useEffect } from "react";
 import CustomEdge from "./CustomEdge";
 import {
     addEdge,
@@ -12,6 +12,7 @@ import '../../styles/gestionDiagram/diagram.css'
 import UmlClassNode from "./UmlClassNode";
 import Sidebar from "./Sidebar";
 import DnDProvider, { useDnD } from "./DnDProvider";
+import { DiagramContext } from '../../App';
 
 const nodeTypes = { umlClass: UmlClassNode, umlInterface: UmlClassNode, umlAbstractClass: UmlClassNode };
 
@@ -55,11 +56,16 @@ let id = 0;
 const getId = () => `dndnode_${id++}`;
 
 const Diagram = () => {
+    const { updateDiagramData } = useContext(DiagramContext);
     const reactFlowWrapper = useRef(null);
     const [nodes, setNodes, onNodesChange] = useNodesState([]);
     const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
     const { screenToFlowPosition } = useReactFlow();
     const [type] = useDnD();
+
+    useEffect(() => {
+        updateDiagramData(nodes, edges);
+    }, [nodes, edges, updateDiagramData]);
 
     const updateEdgeData = (id, updatedData) => {
         setEdges((eds) =>
@@ -94,8 +100,6 @@ const Diagram = () => {
             )
         );
     }, [setEdges, type]);
-
-
 
     const onDragOver = useCallback((event) => {
         event.preventDefault();
