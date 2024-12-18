@@ -48,9 +48,6 @@ export function generatePHPCode(jsonData) {
         phpCode += " {\n\n";
         
 
-        
-
-
         // Gestion des attributs avec visibilité
         if (classData.attributes && classData.attributes.length > 0) {
             phpCode += "    // Attributes\n";

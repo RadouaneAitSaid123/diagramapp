@@ -11,6 +11,7 @@ import { faPython } from '@fortawesome/free-brands-svg-icons';
 import { saveAs } from 'file-saver';
 import { generatePHPCode } from '../utils/phpGenerator';
 import { generateJavaFiles } from '../components/generationCode/javaGenerator';
+import { generatePythonCode } from '../utils/pythonGenerator';
 
 
 
@@ -56,6 +57,34 @@ export default function Navbar({ showGenerateButton, onCreateDiagram, onGenerate
         saveAs(phpBlob, 'generated_classes.php');
     };
 
+     // Ajout de la fonction de gestion pour Python
+     const handleGeneratePython = () => {
+        const jsonData = onGenerateJSON();  // Assurez-vous que cette fonction retourne des données
+        
+        // Vérification des données
+        if (!jsonData) {
+            console.error('No data to generate Python code');
+            return;
+        }
+    
+        console.log('JSON Data:', jsonData);  // Pour déboguer
+    
+        try {
+            // Générer le code Python
+            const pythonCode = generatePythonCode(jsonData);
+            
+            // Créer et sauvegarder le fichier
+            if (pythonCode) {
+                const pythonBlob = new Blob([pythonCode], 
+                    { type: 'text/plain;charset=utf-8' });
+                saveAs(pythonBlob, 'generated_classes.py');
+            }
+        } catch (error) {
+            console.error('Error generating Python code:', error);
+        }
+    };
+    
+
     const handleNewDiagram = () => {  
         setModalType('createDiagram');
     };
@@ -91,7 +120,7 @@ export default function Navbar({ showGenerateButton, onCreateDiagram, onGenerate
                                     <a
                                         className="dropdown-item"
                                         href="#"
-                                        onClick={() => openModal('affichageCode', codeExamples.python)}
+                                        onClick={handleGeneratePython}
                                     >
                                         <FontAwesomeIcon icon={faPython}/> Python
                                     </a>
