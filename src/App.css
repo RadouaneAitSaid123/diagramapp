@@ -1,23 +1,96 @@
 @import url('https://fonts.googleapis.com/css2?family=Anton&family=Ga+Maamli&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+  background-color: #f4f4f9; /* Fond clair neutre */
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+
+}
+
 .main{
   margin: 0;
   padding: 0;
+  animation: fadeIn 2s ease-in-out;
 }
 h1{
-  font-family: "Ga Maamli", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-  letter-spacing: 8px;
-  font-size: xx-large;
+  font-size: 5vw;
+  font-family: 'Anton', sans-serif;
+  color: #4a90e2;
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 0.15em solid #6c61ca; /* curseur */
+  animation: typing 3s steps(40) 1s forwards, blink 0.75s step-end infinite;
 }
+
 .welcome{
-  background-color: rgba(27, 73, 96,0.8);
+  background: linear-gradient(135deg, #1e2629, #9168a8); /* Dégradé léger */
   height: 100vh;
-  color: lightcyan;
   display: flex;
   justify-content: center;
   align-items: center;
+  color: white;
+  font-family: 'Anton', sans-serif;
 }
+.welcome-text {
+  background-color: rgba(0, 0, 0, 0.3);
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+@keyframes blink {
+  50% {
+    border-color: transparent;
+  }
+}
+@keyframes cursor-blink {
+  50% {
+    border-color: transparent;
+  }
+  100% {
+    border-color: #3498db; /* Couleur du curseur */
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+button {
+  background-color: #4a90e2;
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  border-radius: 30px;
+  transition: transform 0.3s, background-color 0.3s;
+}
+button:hover {
+  transform: scale(1.1);
+  background-color: #6c61ca;
+}
+.hidden {
+  opacity: 0;
+  transition: opacity 0.4s ease-out, visibility 0.4s ease-out;
+}
+
 .dndflow {
   flex-direction: column;
   display: flex;
@@ -25,13 +98,42 @@ h1{
   height: 100%;
 }
 
+/* Position and style for the app description */
+.app-description {
+  margin-top: 10px; /* Add spacing between the title and description */
+  position: fixed; /* Fixe la position par rapport à la fenêtre */
+  bottom: 20px;    /* Distance depuis le bas */
+  right: 20px;     /* Distance depuis la droite */
+  max-width: 450px; /* Limite la largeur du texte */
+  font-family: 'Helvetica Neue', sans-serif;
+  font-size: 1rem; /* Plus petit que le titre principal */
+  color: #444;     /* Couleur neutre */
+  text-align: center; /* Alignement à droite */
+  background-color: rgba(255, 255, 255, 0.9); /* Fond clair légèrement transparent */
+  padding: 10px 15px; /* Espacement interne */
+  border-radius: 8px; /* Coins arrondis */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Ombre douce */
+  animation: fadeInSlide 3s ease-in-out; /* Animation combinée */
+}
+
+/* Animation for appearance */
+@keyframes fadeInSlide {
+  0% {
+    opacity: 0;
+    transform: translateY(60px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 @media screen and (min-width: 768px) {
   .dndflow {
     flex-direction: row;
   }
 
   .dndflow aside {
-    width: 20%;
+    width: 100%;
     max-width: 250px;
   }
 }

@@ -13,9 +13,9 @@ UmlClassNode.propTypes = {
     }).isRequired,
 };
 
-function UmlClassNode(props) {
-    const [isVisible, setIsVisible] = useState(false);
-    const [attDIsVisible, setAttDIsVisible] = useState(false);
+function UmlClassNode(props){
+    const [isVisible, setIsVisible]=useState(false);
+    const [attDIsVisible, setAttDIsVisible]=useState(false);
     const [selectedIndex, setSelectedIndex] = useState(null);
     const [selectedType, setSelectedType] = useState(null);
 
