@@ -21,10 +21,10 @@ function Sidebar({ diagramName }) {
             {/* Affiche le nom du diagramme */}
             <div className="list-group">
                 <a href="#" className="list-group-item list-group-item-action titre" aria-current="true">
-                    <h6>Diagrams</h6>
+                    <h6>Diagram</h6>
                 </a>
                 <a href="#" className="list-group-item list-group-item-action dndnode" onDragStart={(event) => onDragStart(event, 'umlClass')}
-                    draggable>{diagramName || "Unnamed"}</a>
+                    draggable>Mon Diagram</a>
             </div>
             <div className="list-group">
                 <a href="#" className="list-group-item list-group-item-action titre" aria-current="true">
