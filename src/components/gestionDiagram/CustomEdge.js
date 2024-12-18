@@ -34,9 +34,10 @@ const CustomEdge = ({
             markerEnd = 'url(#diamond-filled)';
             break;
         case 'implementation':
-            markerEnd = 'url(#dashed-line)';
+            markerStart = 'url(#dashed-line)';
+            markerEnd = 'url(#arrowhead)';
             break;
-        case 'unidirectionnelle': // Héritage
+        case 'unidirectionnelle': // Navigabilité unidirectionnelle
             markerEnd = 'url(#unidirectional-arrowhead)';
             break;
         case 'bidirectional': // Navigabilité bidirectionnelle
@@ -73,20 +74,20 @@ const CustomEdge = ({
 
             {/* Cardinalité côté source */}
             <text
-                x={sourceX -20}
+                x={sourceX - 20}
                 y={sourceY + 15}
                 fill="black"
-                fontSize={15}
+                fontSize={30}
                 textAnchor="middle"
             >
                 {sourceCardinality}
             </text>
             {/* Cardinalité côté cible */}
             <text
-                x={targetX + 15}
-                y={targetY + 2}
+                x={targetX + 20}
+                y={targetY -10}
                 fill="black"
-                fontSize={15}
+                fontSize={30}
                 textAnchor="middle"
             >
                 {targetCardinality}

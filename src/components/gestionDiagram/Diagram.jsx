@@ -88,7 +88,7 @@ const Diagram = forwardRef((props, ref) => {
     };
 
     // Exemple d'interaction pour changer la cardinalité
-    const onEdgeClick = (event, edge) => {
+    const onEdgeDoubleClick = (event, edge) => {
         const sourceCardinality = prompt("Enter source cardinality:", edge.data.sourceCardinality || "");
         const targetCardinality = prompt("Enter target cardinality:", edge.data.targetCardinality || "");
         // Ne mettez à jour que si l'utilisateur a saisi une valeur
@@ -219,7 +219,7 @@ const Diagram = forwardRef((props, ref) => {
                     onDragOver={onDragOver}
                     nodeTypes={nodeTypes}
                     edgeTypes={edgeTypes}
-                    onEdgeClick={onEdgeClick}
+                    onEdgeDoubleClick={onEdgeDoubleClick}
                     fitView
                 >
                     <Controls />
@@ -236,9 +236,15 @@ const Diagram = forwardRef((props, ref) => {
 
 const DiagramWithProvider = forwardRef((props, ref) => (
     <ReactFlowProvider>
+<<<<<<< HEAD
         <DnDProvider>
             <Diagram ref={ref} />
         </DnDProvider>
+=======
+            <DnDProvider>
+                <Diagram />
+            </DnDProvider>
+>>>>>>> sauvegarde-diagram
     </ReactFlowProvider>
 ));
 
